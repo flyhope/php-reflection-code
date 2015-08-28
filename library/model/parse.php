@@ -8,6 +8,21 @@
  */
 class Model_Parse {
     
+    static public function showClass(ReflectionClass $reflection_class) {
+        $is_abstract = $reflection_class->isAbstract();
+        $is_final = $reflection_class->isFinal();
+        $parent_class = $reflection_class->getParentClass();
+        $parent_name = $parent_class ? $parent_class->getName() : '';
+        $interface_names = $reflection_class->getInterfaceNames();
+        
+        $result = '';
+        $is_abstract && $result .= 'abstract ';
+        $is_final && $result .= 'final ';
+        $result .= $reflection_class->getName();
+        $parent_name && $result .= ' extends ';
+        
+    }
+    
     /**
      * 展示方法的定义CODE
      * 
