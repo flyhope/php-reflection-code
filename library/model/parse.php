@@ -8,6 +8,10 @@
  */
 class Model_Parse {
     
+    /**
+     * 获取Class定义的方法
+     * @param ReflectionClass $reflection_class
+     */
     static public function showClass(ReflectionClass $reflection_class) {
         $is_abstract = $reflection_class->isAbstract();
         $is_final = $reflection_class->isFinal();
@@ -18,9 +22,17 @@ class Model_Parse {
         $result = '';
         $is_abstract && $result .= 'abstract ';
         $is_final && $result .= 'final ';
+        $result .= 'class ';
         $result .= $reflection_class->getName();
-        $parent_name && $result .= ' extends ';
+        $parent_name && $result .= " extends {$parent_name}";
         
+        //追加Interface
+        $interface_names = $reflection_class->getInterfaceNames();
+        if($interface_names) {
+            $result .= ' ' . implode(',', $interface_names);
+        }
+        
+        return $result;
     }
     
     /**
@@ -40,7 +52,19 @@ class Model_Parse {
         $is_static && $result .= 'static ';
         $visibility && $result .= "{$visibility} ";
         $result .= 'function ' . $reflection_method->getName() . '(';
-        $result .= '){}';
+
+        
+        
+        $parameters = $reflection_method->getParameters();
+        foreach($parameters as $parameter) {
+            $para_name = $parameter->getName();
+            $is_reference = $parameter->isPassedByReference();
+            
+            $is_reference && $result .= '& ';
+            $result .= "\${$para_name}, ";
+        }
+        $result = rtrim($result, ', ');
+        $result .= ') {}';
         return $result;
     }
     

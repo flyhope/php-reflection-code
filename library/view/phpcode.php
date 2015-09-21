@@ -6,8 +6,9 @@
  * @package View
  * @author  chengxuan <chengxuan@staff.weibo.com>
  */?><?= '<?php' ?>
- 
-class <?= $reflection->getName() ?> {
+
+<?php //输出CLASS定义 ?>
+<?= Model_Parse::showClass($reflection) ?> {
 <?php //输出常量 ?>
 <?php foreach($reflection->getConstants() as $key => $value) :?>
     const <?= $key; ?> = <?= $value; ?>;
