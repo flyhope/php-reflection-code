@@ -16,8 +16,5 @@
 <?php //输出方法 ?>
 <?php foreach($reflection->getmethods() as $value) :?>
     <?= Model_Parse::showMehod($value);?>
-    
 <?php endforeach; ?>
 }
-
- 
