@@ -39,10 +39,11 @@ class DocsFetch {
      * @return number
      */
     public function processEq($class_name, $path_prefix = '') {
-        $path = $path_prefix ? "{$path_prefix}/{$class_name}" : $class_name;
         $content = Model_Parse::showDoc($class_name);
         
         if ($content) {
+            $path = str_replace('\\', '_', $class_name);
+            $path_prefix && $path = "{$path_prefix}/{$path}";
             $result = $this->_write($path, $content);
         } else {
             $result = false;

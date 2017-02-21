@@ -17,5 +17,6 @@ return array(
         'yar',
         'yaf',
         'memcached',
+        'swoole',
     ),
 );
