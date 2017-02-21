@@ -25,7 +25,6 @@ class Model_Manual {
         // SVN签出
         $cmd = "svn export 'http://svn.php.net/repository/phpdoc/zh/trunk/reference/{$ext_name}' {$docs_xml_dir} --force";
         shell_exec($cmd);
-        echo $cmd;exit;
         
         $dir = new DirectoryIterator($docs_xml_dir);
         foreach($dir as $file) {
