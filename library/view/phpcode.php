@@ -4,7 +4,7 @@
  * PHPCODE 模板
  *
  * @package View
- * @author  chengxuan <chengxuan@staff.weibo.com>
+ * @author  Leelmes <i@chengxuan.li>
  */?><?= '<?php' ?>
 
 <?php //输出CLASS定义 ?>
@@ -16,5 +16,6 @@
 <?php //输出方法 ?>
 <?php foreach($reflection->getmethods() as $value) :?>
     <?= Model_Parse::showMehod($value);?>
+    
 <?php endforeach; ?>
 }

@@ -9,6 +9,28 @@
 class Model_Parse {
     
     /**
+     * 显示文档
+     * 
+     * @param string $class_name
+     * 
+     * @return string|boolean
+     */
+    static public function showDoc($class_name) {
+        
+        try {
+            $reflection = new ReflectionClass($class_name);
+        } catch(ReflectionException $e) {
+            return false;
+        }
+        
+        ob_start();
+        include VIEW_PATH . 'phpcode.php';
+        $result = ob_get_contents();
+        ob_end_clean();
+        return $result;
+    }
+    
+    /**
      * 获取Class定义的方法
      * @param ReflectionClass $reflection_class
      */
@@ -52,16 +74,17 @@ class Model_Parse {
         $is_static && $result .= 'static ';
         $visibility && $result .= "{$visibility} ";
         $result .= 'function ' . $reflection_method->getName() . '(';
-
-        
         
         $parameters = $reflection_method->getParameters();
         foreach($parameters as $parameter) {
+            /* @var ReflectionParameter $parameter */
             $para_name = $parameter->getName();
-            $is_reference = $parameter->isPassedByReference();
-            
-            $is_reference && $result .= '& ';
-            $result .= "\${$para_name}, ";
+            $parameter->isPassedByReference() && $result .= '& ';
+            $result .= "\${$para_name}";
+            if ($parameter->isOptional()) {
+                $result .= ' = null';
+            }
+            $result .= ', ';
         }
         $result = rtrim($result, ', ');
         $result .= ') {}';
@@ -86,5 +109,6 @@ class Model_Parse {
         }
         return $result;
     }
+    
     
 } 
