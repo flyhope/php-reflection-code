@@ -7,16 +7,23 @@
  */
 
 return array(
+    
+    // 单类
     'eq' => array(
         'redis',
         'yac',
         'yaconf',
     ),
 
+    // 类前缀
     'prefix' => array(
-        'yar',
-        'yaf',
         'memcached',
         'swoole',
     ),
+    
+    // 从PHP手册获取，确保 http://svn.php.net/repository/phpdoc/zh/trunk/reference/ 存在
+    'manual' => array(
+        'yar',
+        'yaf',
+    )
 );

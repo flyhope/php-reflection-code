@@ -9,6 +9,7 @@ define('APP_PATH', __DIR__ . '/');
 define('LIBRARY_PATH', APP_PATH . 'library/');
 define('VIEW_PATH', LIBRARY_PATH . 'view/');
 include LIBRARY_PATH . 'model/parse.php';
+include LIBRARY_PATH . 'model/manual.php';
 include LIBRARY_PATH . 'model/doc_fetch.php';
 
 $config = include APP_PATH . 'conf/fetch.php';
@@ -20,6 +21,7 @@ foreach ($config as $type => $values) {
         switch ($type) {
             case 'eq' :
             case 'prefix' :
+            case 'manual' :
                 printf("[%s] %s\n", $type, $value);
                 $method = 'process' . ucfirst($type);
                 $docs_fetch->$method($value);

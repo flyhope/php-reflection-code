@@ -44,7 +44,7 @@ class DocsFetch {
         if ($content) {
             $path = str_replace('\\', '_', $class_name);
             $path_prefix && $path = "{$path_prefix}/{$path}";
-            $result = $this->_write($path, $content);
+            $result = $this->write($path, $content);
         } else {
             $result = false;
         }
@@ -76,12 +76,29 @@ class DocsFetch {
     }
     
     /**
+     * 从PHP手册获取
+     * 
+     * @param string $extension
+     * 
+     * @return number
+     */
+    public function processManual($extension) {
+        $total = 0;
+        $model_manual = new Model_Manual();
+        $model_manual->process($extension, function($path, $content) use (& $total) {
+            $this->write($path, $content);
+            ++$total;
+        });
+        return $total;
+    }
+    
+    /**
      * 写入数据
      * 
      * @param string $path    目录相对路径
      * @param string $content 内容
      */
-    protected function _write($path, $content) {
+    public function write($path, $content) {
         $path = "{$this->_output_dir}{$path}.php";
         $dir = dirname($path);
         if (!is_dir($dir)) {
