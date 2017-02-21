@@ -85,8 +85,8 @@ class DocsFetch {
     public function processManual($extension) {
         $total = 0;
         $model_manual = new Model_Manual();
-        $model_manual->process($extension, function($path, $content) use (& $total) {
-            $this->write($path, $content);
+        $model_manual->process($extension, function($path, $content) use (& $total, $extension) {
+            $this->write("{$extension}/{$path}", $content);
             ++$total;
         });
         return $total;
