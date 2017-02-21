@@ -8,7 +8,6 @@
 
 return array(
     'eq' => array(
-        'memcached',
         'redis',
         'yac',
         'yaconf',
@@ -17,6 +16,6 @@ return array(
     'prefix' => array(
         'yar',
         'yaf',
-
+        'memcached',
     ),
 );

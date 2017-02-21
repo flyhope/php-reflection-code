@@ -51,7 +51,7 @@ class Model_Parse {
         //追加Interface
         $interface_names = $reflection_class->getInterfaceNames();
         if($interface_names) {
-            $result .= ' ' . implode(',', $interface_names);
+            $result .= ' implements ' . implode(',', $interface_names);
         }
         
         return $result;
