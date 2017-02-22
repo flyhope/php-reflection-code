@@ -41,11 +41,18 @@ class Model_Parse {
         $parent_name = $parent_class ? $parent_class->getName() : '';
         $interface_names = $reflection_class->getInterfaceNames();
         
+        // 处理命名空间
         $result = '';
+        $namespace = $reflection_class->getNamespaceName();
+        if ($namespace) {
+            $result .= "namespace {$namespace}\n";
+        }
+        
+        
         $is_abstract && $result .= 'abstract ';
         $is_final && $result .= 'final ';
         $result .= 'class ';
-        $result .= $reflection_class->getName();
+        $result .= $reflection_class->getShortName();
         $parent_name && $result .= " extends {$parent_name}";
         
         //追加Interface
