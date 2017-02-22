@@ -11,7 +11,7 @@
 <?= Model_Parse::showClass($reflection) ?> {
 <?php //输出常量 ?>
 <?php foreach($reflection->getConstants() as $key => $value) :?>
-    const <?= $key; ?> = <?= $value; ?>;
+    const <?= $key; ?> = <?= var_export($value, true); ?>;
 <?php endforeach;?>
 <?php //输出方法 ?>
 <?php foreach($reflection->getmethods() as $value) :?>
