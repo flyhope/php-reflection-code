@@ -24,7 +24,7 @@ class Model_Manual {
         
         // SVN签出
         $cmd = "svn export 'http://svn.php.net/repository/phpdoc/zh/trunk/reference/{$ext_name}' {$docs_xml_dir} --force";
-        shell_exec($cmd);
+        `$cmd`;
         
         $dir = new DirectoryIterator($docs_xml_dir);
         foreach($dir as $file) {
@@ -177,14 +177,6 @@ class Model_Manual {
                     }
                 }
             }
-        }
-    
-        
-        
-        if ($class_name == 'Yar_Concurrent_Client') {
-            var_dump($refdoc->fields);
-            echo($refdoc->show());
-            exit;
         }
     
         return $refdoc->show();
