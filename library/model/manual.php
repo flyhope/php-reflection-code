@@ -214,13 +214,14 @@ class Model_Manual {
     
     
         //处理数据
+        $package = ucfirst($ext_name);
         $response = "<?php\n";
         $response .= "/**\n";
         if($class_content) {
             $response_class_content = str_replace("\n", "\n * ", $class_content);
             $response .= " * {$response_class_content}\n * \n";
         }
-        $response .= " * @package {$ext_name}\n";
+        $response .= " * @package {$package}\n";
         $response .= " * @author Leelmes <i@chengxuan.li> (DOC Only)\n";
         $response .= " */\n";
     

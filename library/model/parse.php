@@ -9,6 +9,13 @@
 class Model_Parse {
     
     /**
+     * 文档缩进
+     * 
+     * @var string
+     */
+    const INDENT = '    ';
+    
+    /**
      * 显示文档
      * 
      * @param string $class_name
@@ -23,10 +30,30 @@ class Model_Parse {
             return false;
         }
         
-        ob_start();
-        include VIEW_PATH . 'phpcode.php';
-        $result = ob_get_contents();
-        ob_end_clean();
+        // Class 定义
+        $doc_title = ucfirst($class_name) . " Document";
+        $result = "<?php\n";
+        $result .= "/**\n";
+        $result .= " * {$doc_title}\n";
+        $result .= " *\n";
+        $result .= " * @author Leelmes <i@chengxuan.li>\n";
+        $result .= " */\n";
+        
+        $result .= self::showClass($reflection) . "{\n\n";
+        
+        // 输出常量
+        foreach($reflection->getConstants() as $key => $value) {
+            $result .= self::INDENT . "{$key} = " . var_export($value, true) . ";\n";
+        }
+        
+        //输出方法 
+        $result .= "\n";
+        foreach($reflection->getmethods() as $value) {
+            $result .= self::INDENT . self::showMethod($value) . "\n";
+        }
+
+        // 文件结尾
+        $result .= "}\n";
         return $result;
     }
     
@@ -71,7 +98,7 @@ class Model_Parse {
      * 
      * @return string
      */
-    static public function showMehod(ReflectionMethod $reflection_method) {
+    static public function showMethod(ReflectionMethod $reflection_method) {
         $is_abstract = $reflection_method->isAbstract();
         $is_static = $reflection_method->isStatic();
         $visibility = self::_showVisibility($reflection_method);

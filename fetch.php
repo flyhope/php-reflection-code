@@ -15,6 +15,9 @@ include LIBRARY_PATH . 'model/doc_fetch.php';
 $config = include APP_PATH . 'conf/fetch.php';
 $output_dir = APP_PATH . 'php_docs_code/';
 
+// shell_exec("rm -Rf {$output_dir}");
+// shell_exec("rm -Rf " . APP_PATH . 'docs_xml_dir');
+
 $docs_fetch = new DocsFetch($output_dir);
 foreach ($config as $type => $values) {
     foreach ($values as $value) {
