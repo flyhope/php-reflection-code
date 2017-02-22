@@ -38,8 +38,8 @@ class Model_Manual {
     
             // 只处理指定扩展开头的
             if(stripos($filename, $ext_name) === 0) {
-                $response = self::_parseXmlDocs(pathinfo($file, PATHINFO_FILENAME), $ext_name);
-                call_user_func($callback, $filename, $response);
+                $response = self::_parseXmlDocs($file, $ext_name);
+                call_user_func($callback, pathinfo($filename, PATHINFO_FILENAME), $response);
             }
         }
     }
@@ -181,7 +181,7 @@ class Model_Manual {
     
         
         
-        if ($class_name == 'Yaf_Loader') {
+        if ($class_name == 'Yar_Concurrent_Client') {
             var_dump($refdoc->fields);
             echo($refdoc->show());
             exit;
