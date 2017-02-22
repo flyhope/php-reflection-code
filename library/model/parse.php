@@ -9,13 +9,6 @@
 class Model_Parse {
     
     /**
-     * 文档缩进
-     * 
-     * @var string
-     */
-    const INDENT = '    ';
-    
-    /**
      * 显示文档
      * 
      * @param string $class_name
@@ -39,17 +32,22 @@ class Model_Parse {
         $result .= " * @author Leelmes <i@chengxuan.li>\n";
         $result .= " */\n";
         
-        $result .= self::showClass($reflection) . "{\n\n";
+        $result .= self::showClass($reflection) . " {\n\n";
         
         // 输出常量
-        foreach($reflection->getConstants() as $key => $value) {
-            $result .= self::INDENT . "{$key} = " . var_export($value, true) . ";\n";
+        foreach ($reflection->getConstants() as $key => $value) {
+            $result .= "{$key} = " . var_export($value, true) . ";\n";
+        }
+        
+        // 输出属性
+        foreach ($reflection->getProperties() as $propertie) {
+            $result .= self::showPropertie($propertie) . "\n";
         }
         
         //输出方法 
         $result .= "\n";
         foreach($reflection->getmethods() as $value) {
-            $result .= self::INDENT . self::showMethod($value) . "\n";
+            $result .= self::showMethod($value) . "\n";
         }
 
         // 文件结尾
@@ -87,6 +85,28 @@ class Model_Parse {
         if($interface_names) {
             $result .= ' implements ' . implode(',', $interface_names);
         }
+        
+        return $result;
+    }
+    
+    /**
+     * 获取属性
+     * 
+     * @param ReflectionProperty $propertie
+     * 
+     * @return string
+     */
+    static public function showPropertie(ReflectionProperty $propertie) {
+        $propertie_name = $propertie->getName();
+        $modifiers = Reflection::getModifierNames($propertie->getModifiers());
+        $result = implode(' ', $modifiers) . ' $' . $propertie_name;
+        
+        $default_properties = $propertie->getDeclaringClass()->getDefaultProperties();
+        if (isset($default_properties[$propertie_name])) {
+            $result .= ' = ' . var_export($default_properties[$propertie_name], true);
+        }
+        
+        $result .= ";";
         
         return $result;
     }

@@ -31,19 +31,14 @@ class Model_Manual {
             $pathname = $file->getPathname();
             $filename = $file->getFilename();
     
-            //不处理.开头的任何东西
-            if(strpos($filename, '.') === 0) {
-                continue;
-            }
-    
-            //不处理目录
-            if($file->isDir()) {
+            //不处理.开头的任何东西 和 目录
+            if(strpos($filename, '.') === 0 || $file->isDir()) {
                 continue;
             }
     
             // 只处理指定扩展开头的
-            if(strpos($filename, $ext_name) === 0) {
-                $response = self::_parseXmlDocs($file, $ext_name);
+            if(stripos($filename, $ext_name) === 0) {
+                $response = self::_parseXmlDocs(pathinfo($file, PATHINFO_FILENAME), $ext_name);
                 call_user_func($callback, $filename, $response);
             }
         }
@@ -74,44 +69,35 @@ class Model_Manual {
     protected static function _parseXmlDocs(SplFileInfo $file, $ext_name) {
         $xml = file_get_contents($file->getPathname());
         $name = pathinfo($file->getFilename(), PATHINFO_FILENAME);
-    
-        //获取类信息
-        preg_match('#<classsynopsisinfo>(.+)</classsynopsisinfo>#isU', $xml, $classsynopsisinfo);
-        $classsynopsisinfo = simplexml_load_string($classsynopsisinfo[0]);
-    
+
         //获取类注释
-        $class_content = '';
+        $content_class = '';
         if(preg_match("#<section xml:id=\"{$name}.intro\">(.+)</section>#isU", $xml, $section_intro)) {
             if(preg_match_all('#<para>(.*)</para>#sU', $section_intro[1], $para)) {
-                $class_content = self::_formatContent($para[1]);
+                $content_class = self::_formatContent($para[1]);
             }
         }
-    
-        //处理对象入继承
-        $class_modifier = array();
+
+        // 获取类名称
+        preg_match('#<classsynopsisinfo>(.+)</classsynopsisinfo>#isU', $xml, $classsynopsisinfo);
+        $classsynopsisinfo = simplexml_load_string($classsynopsisinfo[0]);
         foreach($classsynopsisinfo->ooclass as $value) {
             $modifier = isset($value->modifier) ? $value->modifier : '';
             switch($modifier) {
                 case 'extends' :
-                    $extends = $value->classname;
                     break;
-                case 'abstract' :
-                case 'final' :
-                case '' :
-                    $modifier && $class_modifier[] = $modifier;
+                default :
                     $class_name = $value->classname;
-                    break;
+                    break 2;
             }
         }
     
-        //处理引入的接口
-        $interface = array();
-        foreach($classsynopsisinfo->oointerface as $value) {
-            $interface[] = $value->interfacename;
-        }
+        // 初始化处理类
+        $refdoc = new Model_Refdoc((string)$class_name);
+        $refdoc->class_content = $content_class;
+        $refdoc->package = ucfirst($ext_name);
     
         //处理类属性
-        $fields = array();
         preg_match_all("#<fieldsynopsis>.+</fieldsynopsis>#isU", $xml, $fieldsynopsis);
         foreach($fieldsynopsis[0] as $value) {
             $field_xml_obj = simplexml_load_string($value);
@@ -125,13 +111,11 @@ class Model_Manual {
                 }
             }
     
-            $fields[] = array(
-                'modifier'	=> (string)$field_xml_obj->modifier,
-                'varname'	=> $varname,
+            $refdoc->fields[$varname] = array(
                 'content'   => $field_content,
             );
         }
-    
+        
         //处理类方法
         $methods = array();
         $func_dir = $file->getPath() . '/' . str_replace('-', '_', pathinfo($file->getFilename(), PATHINFO_FILENAME));
@@ -153,20 +137,6 @@ class Model_Manual {
                     $method_content = '';
                     if(preg_match('#<refpurpose>(.+)</refpurpose>#sU', $func_xml, $refpurpose)) {
                         $method_content = trim($refpurpose[1]);
-                    }
-                     
-                    //获取方法修饰
-                    $method_modifiter = array();
-                    foreach($methodsynopsis->modifier as $value) {
-                        $value = strtolower((string)$value);
-                        $method_modifiter[] = $value;
-                        	
-                        //有抽象方法的类必需定义为抽象类
-                        if($value === 'abstract') {
-                            if(!in_array('abstract', $class_modifier)) {
-                                $class_modifier[] = 'abstract';
-                            }
-                        }
                     }
     
                     //获得方法参数
@@ -190,9 +160,8 @@ class Model_Manual {
                             }
                         }
     
-                        $method_params[] = array(
+                        $method_params[$parameter] = array(
                             'type'		  => (string)$value->type,
-                            'parameter'	  => $parameter,
                             'content'     => $func_para_content,
                             'choice_opt'  => $choice_opt,
                             'initializer' => $initializer,
@@ -200,9 +169,7 @@ class Model_Manual {
                     }
     
                     if($method_name) {
-                        $methods[] = array(
-                            'name'	=> $method_name,
-                            'modifiter'	=> $method_modifiter,
+                        $refdoc->methods[$method_name] = array(
                             'params'	=> $method_params,
                             'type'		=> (string)$methodsynopsis->type,	//返回值类型
                             'content'   => $method_content,
@@ -212,94 +179,15 @@ class Model_Manual {
             }
         }
     
-    
-        //处理数据
-        $package = ucfirst($ext_name);
-        $response = "<?php\n";
-        $response .= "/**\n";
-        if($class_content) {
-            $response_class_content = str_replace("\n", "\n * ", $class_content);
-            $response .= " * {$response_class_content}\n * \n";
-        }
-        $response .= " * @package {$package}\n";
-        $response .= " * @author Leelmes <i@chengxuan.li> (DOC Only)\n";
-        $response .= " */\n";
-    
-        $class_modifier && $response .= implode(" ", $class_modifier). " ";	//类标识
-        $response .= "class {$class_name}";	//类名称
-        !empty($extends) && $response .= " extends {$extends}";	//继承
-        $interface && $response .= " implements ". implode(",", $interface);	//引入的接口
-        $response.= " {\n";
-    
-        //处理属性
-        if($fields) {
-            foreach($fields as $value) {
-                if($value['modifier'] === 'const') {
-                    $value['varname'] = ltrim(strrchr($value['varname'], ":"), ":");
-                    $response.= "\n    {$value['modifier']} {$value['varname']} = null;\n";
-                } else {
-                    if($value['content']) {
-                        $response .= "\n    /**\n";
-                        $response_field_content = str_replace("\n", "\n     * ", $value['content']);
-                        $response .= "     * {$response_field_content}\n";
-                        $response .= "     */";
-                    }
-                    $response.= "\n    {$value['modifier']} \${$value['varname']};\n";
-                }
-            }
-            $response .= "\n";
+        
+        
+        if ($class_name == 'Yaf_Loader') {
+            var_dump($refdoc->fields);
+            echo($refdoc->show());
+            exit;
         }
     
-        //处理方法
-        $response_method = "";
-        if($methods) {
-            foreach($methods as $method) {
-                $response_method .= "    /**\n";
-    
-                //处理描述
-                if($method['content']) {
-                    $response_method .= "     * {$method['content']}\n";
-                }
-    
-                //处理参数
-                $parameter = array();
-                if($method['params']) {
-                    $response_method .= "     *\n";
-                    foreach($method['params'] as $param) {
-                        $response_method.= "     * @param {$param['type']} \${$param['parameter']} {$param['content']}\n";
-                        if(trim($param['parameter'], '.')) {
-                            $current_parameter = '$' . $param['parameter'];
-                            $param['choice_opt'] && $current_parameter .= " = {$param['initializer']}"; //可选参数
-                            $parameter[] = $current_parameter;
-                        }
-                    }
-                }
-                	
-                //返回值类型
-                if($method['type']) {
-                    $response_method .= "     *\n";
-                    $response_method .= "     * @return {$method['type']}\n";
-                }
-                $response_method .= "     */\n";
-    
-                //处理实体
-                $response_method .= "    ";
-                $method['modifiter'] && $response_method .= implode(" ", $method['modifiter']). " ";
-                $response_method .= 'function ' . $method['name'] . '(';
-                if($method['params']) {
-                    $response_method.= implode(", ", $parameter);
-                }
-                $response_method .= ') ';
-                $response_method .= in_array("abstract", $method['modifiter']) ? ';' : '{}';
-                $response_method .=  "\n\n";
-    
-            }
-        }
-        $response .= $response_method;
-    
-        //处理结束
-        $response .= "\n}";
-        return $response;
+        return $refdoc->show();
     }
     
 }

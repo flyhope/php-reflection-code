@@ -10,6 +10,7 @@ define('LIBRARY_PATH', APP_PATH . 'library/');
 define('VIEW_PATH', LIBRARY_PATH . 'view/');
 include LIBRARY_PATH . 'model/parse.php';
 include LIBRARY_PATH . 'model/manual.php';
+include LIBRARY_PATH . 'model/refdoc.php';
 include LIBRARY_PATH . 'model/doc_fetch.php';
 
 $config = include APP_PATH . 'conf/fetch.php';
