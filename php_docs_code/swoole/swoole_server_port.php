@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Server
+namespace Swoole\Server;
 class Port {
 
 

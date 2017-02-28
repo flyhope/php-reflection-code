@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\WebSocket
+namespace Swoole\WebSocket;
 class Server extends Swoole\Http\Server {
 
 

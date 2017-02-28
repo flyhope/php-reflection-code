@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole
+namespace Swoole;
 class Exception extends Exception implements Throwable {
 
 protected $message = '';

@@ -70,7 +70,7 @@ class Model_Parse {
         $result = '';
         $namespace = $reflection_class->getNamespaceName();
         if ($namespace) {
-            $result .= "namespace {$namespace}\n";
+            $result .= "namespace {$namespace};\n";
         }
         
         

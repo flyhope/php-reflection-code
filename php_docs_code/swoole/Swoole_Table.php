@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole
+namespace Swoole;
 class Table implements Iterator,Traversable,Countable {
 
 TYPE_INT = 1;

@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole
+namespace Swoole;
 class Coroutine {
 
 

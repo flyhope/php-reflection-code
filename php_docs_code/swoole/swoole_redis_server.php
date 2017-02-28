@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Redis
+namespace Swoole\Redis;
 class Server extends Swoole\Server {
 
 NIL = 1;

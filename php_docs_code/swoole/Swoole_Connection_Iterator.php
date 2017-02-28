@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Connection
+namespace Swoole\Connection;
 class Iterator implements Iterator,Traversable,Countable,ArrayAccess {
 
 

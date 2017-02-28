@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Coroutine\Http
+namespace Swoole\Coroutine\Http;
 class Client {
 
 public $errCode = 0;

@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Coroutine
+namespace Swoole\Coroutine;
 class MySQL {
 
 private $serverInfo = '';

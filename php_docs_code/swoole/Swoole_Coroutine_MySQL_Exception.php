@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Coroutine\MySQL
+namespace Swoole\Coroutine\MySQL;
 class Exception extends Exception implements Throwable {
 
 protected $message = '';
