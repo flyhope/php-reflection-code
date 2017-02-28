@@ -36,7 +36,7 @@ class Model_Parse {
         
         // 输出常量
         foreach ($reflection->getConstants() as $key => $value) {
-            $result .= "{$key} = " . var_export($value, true) . ";\n";
+            $result .= "const {$key} = " . var_export($value, true) . ";\n";
         }
         
         // 输出属性
@@ -141,7 +141,7 @@ class Model_Parse {
             $result .= ', ';
         }
         $result = rtrim($result, ', ');
-        $result .= ') {}';
+        $result .= $is_abstract ? ';' : '{}';
         return $result;
     }
     

@@ -8,6 +8,6 @@ namespace Swoole\Http;
 class Request {
 
 
-public function rawcontent() {}
-public function __destruct() {}
+public function rawcontent({}
+public function __destruct({}
 }

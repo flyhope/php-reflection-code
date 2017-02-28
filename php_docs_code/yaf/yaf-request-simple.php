@@ -9,8 +9,8 @@
  */
 final class Yaf_Request_Simple extends Yaf_Request_Abstract {
 
-    SCHEME_HTTP = 'http';
-    SCHEME_HTTPS = 'https';
+    const SCHEME_HTTP = 'http';
+    const SCHEME_HTTPS = 'https';
     public $module;
     
     public $controller;

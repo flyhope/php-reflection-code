@@ -20,27 +20,27 @@ abstract class Yaf_Config_Abstract {
      *
      * @return mixed
      */
-    abstract public function get() {}
+    abstract public function get();
     
     /**
      * Setter
      *
      * @return Yaf_Config_Abstract
      */
-    abstract public function set() {}
+    abstract public function set();
     
     /**
      * 寻找只读配置
      *
      * @return bool
      */
-    abstract public function readonly() {}
+    abstract public function readonly();
     
     /**
      * 转换为数组
      *
      * @return array
      */
-    abstract public function toArray() {}
+    abstract public function toArray();
     
 }

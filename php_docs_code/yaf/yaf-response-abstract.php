@@ -7,7 +7,7 @@
  */
 abstract class Yaf_Response_Abstract {
 
-    DEFAULT_BODY = 'content';
+    const DEFAULT_BODY = 'content';
     protected $_header;
     
     protected $_body;

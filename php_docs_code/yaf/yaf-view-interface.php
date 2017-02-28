@@ -18,7 +18,7 @@ abstract class Yaf_View_Interface {
      *
      * @return bool
      */
-    abstract public function assign($name, $value = null) {}
+    abstract public function assign($name, $value = null);
     
     /**
      * 渲染一个视图模板, 并直接输出给请求端
@@ -28,7 +28,7 @@ abstract class Yaf_View_Interface {
      *
      * @return bool
      */
-    abstract public function display($tpl, $tpl_vars = null) {}
+    abstract public function display($tpl, $tpl_vars = null);
     
     /**
      * 渲染一个视图模板
@@ -38,7 +38,7 @@ abstract class Yaf_View_Interface {
      *
      * @return string
      */
-    abstract public function render($tpl, $tpl_vars = null) {}
+    abstract public function render($tpl, $tpl_vars = null);
     
     /**
      * The setScriptPath purpose
@@ -47,13 +47,13 @@ abstract class Yaf_View_Interface {
      *
      * @return void
      */
-    abstract public function setScriptPath($template_dir) {}
+    abstract public function setScriptPath($template_dir);
     
     /**
      * The getScriptPath purpose
      *
      * @return void
      */
-    abstract public function getScriptPath() {}
+    abstract public function getScriptPath();
     
 }

@@ -8,5 +8,5 @@ namespace Swoole;
 class Module {
 
 
-public function __call($func, $params) {}
+public function __call($func, $params{}
 }

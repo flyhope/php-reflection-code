@@ -108,7 +108,7 @@ class Model_Refdoc {
         
         // 输出常量
         foreach ($reflection->getConstants() as $key => $value) {
-            $result .= $this->_indent("{$key} = " . var_export($value, true) . ";\n", 1);
+            $result .= $this->_indent("const {$key} = " . var_export($value, true) . ";\n", 1);
         }
         
         // 输出属性
@@ -273,7 +273,8 @@ class Model_Refdoc {
             $result .= ', ';
         }
         $result = rtrim($result, ', ');
-        $result .= ') {}';
+        $result .= ')';
+        $result .= $is_abstract ? ';' : ' {}';
         return $result;
     }
     

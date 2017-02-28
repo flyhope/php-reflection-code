@@ -17,7 +17,7 @@ abstract class Yaf_Route_Interface {
      *
      * @return bool
      */
-    abstract public function route($request) {}
+    abstract public function route($request);
     
     /**
      * 将指定路由规则组合成一个url
@@ -27,6 +27,6 @@ abstract class Yaf_Route_Interface {
      *
      * @return string
      */
-    abstract public function assemble($info, $query = null) {}
+    abstract public function assemble($info, $query = null);
     
 }

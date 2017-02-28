@@ -38,7 +38,7 @@ abstract class Yaf_Action_Abstract extends Yaf_Controller_Abstract {
      *
      * @return mixed
      */
-    abstract public function execute() {}
+    abstract public function execute();
     
     /**
      * 得到控制器实例
