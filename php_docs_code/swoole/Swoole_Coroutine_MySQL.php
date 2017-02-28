@@ -17,12 +17,12 @@ public $insert_id = 0;
 public $error = '';
 public $errno = 0;
 
-public function __construct({}
-public function __destruct({}
-public function connect({}
-public function query({}
-public function recv({}
-public function setDefer({}
-public function getDefer({}
-public function close({}
+public function __construct() {}
+public function __destruct() {}
+public function connect() {}
+public function query() {}
+public function recv() {}
+public function setDefer() {}
+public function getDefer() {}
+public function close() {}
 }

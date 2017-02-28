@@ -8,5 +8,5 @@ namespace Swoole;
 class Mmap {
 
 
-static public function open($filename, $size = null, $offset = null{}
+static public function open($filename, $size = null, $offset = null) {}
 }

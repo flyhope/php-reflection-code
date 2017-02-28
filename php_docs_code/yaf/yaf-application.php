@@ -73,7 +73,7 @@ final class Yaf_Application {
      *
      * @return void
      */
-    public function execute($entry, $...) {}
+    public function execute($entry, ... $parameter) {}
     
     /**
      * 获取当前的<classname>Yaf_Application</classname>实例

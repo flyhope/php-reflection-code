@@ -261,7 +261,7 @@ class Model_Refdoc {
             /* @var ReflectionParameter $parameter */
             $para_name = $parameter->getName();
             $parameter->isPassedByReference() && $result .= '& ';
-            $result .= "\${$para_name}";
+            $result .= $para_name === '...' ? '... $parameter' : "\${$para_name}";
             if ($parameter->isOptional()) {
                 if (isset($this->methods[$method_name]['params'][$para_name]['initializer'])) {
                     $default = $this->methods[$method_name]['params'][$para_name]['initializer'];

@@ -140,8 +140,8 @@ class Model_Parse {
             }
             $result .= ', ';
         }
-        $result = rtrim($result, ', ');
-        $result .= $is_abstract ? ';' : '{}';
+        $result = rtrim($result, ', ') . ')';
+        $result .= $is_abstract ? ';' : ' {}';
         return $result;
     }
     
