@@ -159,7 +159,7 @@ class Model_Refdoc {
         $result = '';
         $namespace = $reflection_class->getNamespaceName();
         if ($namespace) {
-            $result .= "namespace {$namespace}\n";
+            $result .= "namespace {$namespace};\n";
         }
         
         
