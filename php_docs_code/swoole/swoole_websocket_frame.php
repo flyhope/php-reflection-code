@@ -1,3 +1,11 @@
 <?php
-class Swoole\WebSocket\Frame {
+/**
+ * Swoole_websocket_frame Document
+ *
+ * @author Leelmes <i@chengxuan.li>
+ */
+namespace Swoole\WebSocket
+class Frame {
+
+
 }

@@ -1,4 +1,12 @@
 <?php
-class Swoole\Mmap {
-    static public function open($filename, $size = null, $offset = null) {}    
+/**
+ * Swoole_mmap Document
+ *
+ * @author Leelmes <i@chengxuan.li>
+ */
+namespace Swoole
+class Mmap {
+
+
+static public function open($filename, $size = null, $offset = null) {}
 }
