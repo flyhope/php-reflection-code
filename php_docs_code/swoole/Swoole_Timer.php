@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\Timer Document
+ * Swoole_timer Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\Channel Document
+ * Swoole_channel Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\Lock Document
+ * Swoole_lock Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

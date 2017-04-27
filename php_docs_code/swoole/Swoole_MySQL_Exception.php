@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\MySQL\Exception Document
+ * Swoole_mysql_exception Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\Mmap Document
+ * Swoole_mmap Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

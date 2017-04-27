@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\WebSocket\Server Document
+ * Swoole_websocket_server Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\Server Document
+ * Swoole_server Document
  *
  * @author Leelmes <i@chengxuan.li>
  */

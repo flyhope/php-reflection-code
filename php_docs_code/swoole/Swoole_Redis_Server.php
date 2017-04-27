@@ -1,6 +1,6 @@
 <?php
 /**
- * Swoole\Redis\Server Document
+ * Swoole_redis_server Document
  *
  * @author Leelmes <i@chengxuan.li>
  */
