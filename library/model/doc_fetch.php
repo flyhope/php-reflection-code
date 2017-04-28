@@ -34,7 +34,7 @@ class DocsFetch {
         $content = Model_Parse::showDoc($class_name);
         
         if ($content) {
-            $path = str_replace('\\', '_', $class_name);
+            $path = str_replace('\\', '-', $class_name);
             $path_prefix && $path = "{$path_prefix}/{$path}";
             $result = $this->write($path, $content);
         } else {
