@@ -26,6 +26,7 @@ foreach ($config as $type => $values) {
             case 'eq' :
             case 'prefix' :
             case 'manual' :
+            case 'funcs' :
                 printf("[%s] %s\n", $type, $value);
                 $method = 'process' . ucfirst($type);
                 $docs_fetch->$method($value);
@@ -34,4 +35,3 @@ foreach ($config as $type => $values) {
     }
 }
 printf("[Finish] %s\n", date('Y-m-d H:i:s'));
-

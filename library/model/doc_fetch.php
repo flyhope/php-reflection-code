@@ -6,21 +6,6 @@
  * @since 2017年2月21日
  */
 class DocsFetch {
-    
-    /**
-     * 所有类名
-     * 
-     * @var array
-     */
-    protected static $_declared_classes = array();
-    
-    /**
-     * 所有接口名称
-     * 
-     * @var array
-     */
-    protected static $_declared_interfaces = array();
-
     /**
      * 输出目录DIR
      * 
@@ -67,21 +52,16 @@ class DocsFetch {
      * @return number
      */
     public function processPrefix($class_prefix) {
-        if (!self::$_declared_classes) {
-            self::$_declared_classes = get_declared_classes();
-        }
-        
-        if (!self::$_declared_interfaces) {
-            self::$_declared_interfaces = get_declared_interfaces();
-        }
+        $declared_classes = get_declared_classes();
+        $declared_interfaces = get_declared_interfaces();
         
         // 过滤方法
         $filter_function = function($value) use ($class_prefix) {
             return stripos($value, $class_prefix) === 0;
         };
         
-        $classes = array_filter(self::$_declared_classes, $filter_function);
-        $interfaces = array_filter(self::$_declared_interfaces, $filter_function);
+        $classes = array_filter($declared_classes, $filter_function);
+        $interfaces = array_filter($declared_interfaces, $filter_function);
         
         foreach ($classes as $class_name) {
             $this->processEq($class_name, trim($class_prefix, '/_'));
@@ -109,6 +89,30 @@ class DocsFetch {
             ++$total;
         });
         return $total;
+    }
+    
+    /**
+     * 处理函数名称
+     * 
+     * @param string $name
+     */
+    public function processFuncs($name) {
+        $defined_functions = get_defined_functions();
+
+        $content = Model_Parse::showTitle("{$name} functions");
+        foreach ($defined_functions['internal'] as $value) {
+            if (stripos($value, $name) !== false) {
+                $content .= Model_Parse::showFunction($value);
+            }
+        }
+        
+        if ($content) {
+            $path = str_replace('\\', '_', $name);
+            $result = $this->write($path, $content);
+        } else {
+            $result = false;
+        }
+        return $result;
     }
     
     /**

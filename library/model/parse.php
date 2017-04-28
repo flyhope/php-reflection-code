@@ -25,15 +25,10 @@ class Model_Parse {
         
         // Class 定义
         $doc_title = ucfirst($class_name) . " Document";
-        $result = "<?php\n";
-        $result .= "/**\n";
-        $result .= " * {$doc_title}\n";
-        $result .= " *\n";
-        $result .= " * @author Leelmes <i@chengxuan.li>\n";
-        $result .= " */\n";
+        $result = self::showTitle($doc_title);
         
         $result .= self::showClass($reflection) . " {\n\n";
-        
+
         // 输出常量
         foreach ($reflection->getConstants() as $key => $value) {
             $result .= "const {$key} = " . var_export($value, true) . ";\n";
@@ -52,6 +47,42 @@ class Model_Parse {
 
         // 文件结尾
         $result .= "}\n";
+        return $result;
+    }
+    
+    /**
+     * 获取文件标题
+     * 
+     * @param string $doc_title
+     * 
+     * @return string
+     */
+    static public function showTitle($doc_title) {
+        $result = "<?php\n";
+        $result .= "/**\n";
+        $result .= " * {$doc_title}\n";
+        $result .= " *\n";
+        $result .= " * @author Leelmes <i@chengxuan.li>\n";
+        $result .= " */\n";
+        return $result;
+    }
+    
+    /**
+     * 获取函数定义
+     * 
+     * @param string $function_name
+     * 
+     * @return string
+     */
+    static public function showFunction($function_name) {
+        $reflection = new ReflectionFunction($function_name);
+        $namespace = $reflection->getNamespaceName();
+        $function_name = $reflection->getName();
+        $parameters = $reflection->getParameters();
+        
+        $result = "function {$function_name}";
+        $result .= self::showParameters($parameters);
+        $result .= " {}\n";
         return $result;
     }
     
@@ -132,9 +163,23 @@ class Model_Parse {
         $is_abstract && $result .= 'abstract ';
         $is_static && $result .= 'static ';
         $visibility && $result .= "{$visibility} ";
-        $result .= 'function ' . $reflection_method->getName() . '(';
+        $result .= 'function ' . $reflection_method->getName();
         
         $parameters = $reflection_method->getParameters();
+        $result .= self::showParameters($parameters);
+        $result .= $is_abstract ? ';' : ' {}';
+        return $result;
+    }
+    
+    /**
+     * 显示参数
+     * 
+     * @param array $parameters
+     * 
+     * @return string
+     */
+    static public function showParameters(array $parameters) {
+        $result = '(';
         foreach($parameters as $parameter) {
             /* @var ReflectionParameter $parameter */
             $para_name = $parameter->getName();
@@ -145,8 +190,8 @@ class Model_Parse {
             }
             $result .= ', ';
         }
-        $result = rtrim($result, ', ') . ')';
-        $result .= $is_abstract ? ';' : ' {}';
+        $result = rtrim($result, ', ');
+        $result .= ')';
         return $result;
     }
     
