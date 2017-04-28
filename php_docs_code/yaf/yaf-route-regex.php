@@ -7,7 +7,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-final class Yaf_Route_Regex extends Yaf_Route_Interface implements Yaf_Route_Interface {
+final class Yaf_Route_Regex implements Yaf_Route_Interface {
 
     protected $_route;
     

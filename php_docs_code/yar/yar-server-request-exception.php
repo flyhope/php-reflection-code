@@ -5,7 +5,7 @@
  * @package Yar 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yar_Server_Request_Exception extends Yar_Server_Exception {
+class Yar_Server_Request_Exception extends Yar_Server_Exception implements Throwable {
 
     protected $message = '';
     
@@ -21,6 +21,8 @@ class Yar_Server_Request_Exception extends Yar_Server_Exception {
     private function __clone() {}
     
     public function __construct($message = null, $code = null, $previous = null) {}
+    
+    public function __wakeup() {}
     
     public function getMessage() {}
     

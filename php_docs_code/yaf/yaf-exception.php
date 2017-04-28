@@ -5,7 +5,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaf_Exception extends Exception {
+class Yaf_Exception extends Exception implements Throwable {
 
     protected $file;
     
@@ -24,6 +24,8 @@ class Yaf_Exception extends Exception {
      * The __construct purpose
      */
     public function __construct($message = null, $code = null, $previous = null) {}
+    
+    public function __wakeup() {}
     
     public function getMessage() {}
     

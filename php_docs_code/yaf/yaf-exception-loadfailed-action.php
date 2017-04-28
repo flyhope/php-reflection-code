@@ -5,7 +5,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaf_Exception_LoadFailed_Action extends Yaf_Exception_LoadFailed {
+class Yaf_Exception_LoadFailed_Action extends Yaf_Exception_LoadFailed implements Throwable {
 
     protected $file;
     
@@ -21,6 +21,8 @@ class Yaf_Exception_LoadFailed_Action extends Yaf_Exception_LoadFailed {
     private function __clone() {}
     
     public function __construct($message = null, $code = null, $previous = null) {}
+    
+    public function __wakeup() {}
     
     public function getMessage() {}
     
