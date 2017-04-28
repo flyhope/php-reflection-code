@@ -60,6 +60,7 @@ class Model_Parse {
      * @param ReflectionClass $reflection_class
      */
     static public function showClass(ReflectionClass $reflection_class) {
+        $is_interface = $reflection_class->isInterface();
         $is_abstract = $reflection_class->isAbstract();
         $is_final = $reflection_class->isFinal();
         $parent_class = $reflection_class->getParentClass();
@@ -72,11 +73,15 @@ class Model_Parse {
         if ($namespace) {
             $result .= "namespace {$namespace};\n";
         }
-        
-        
-        $is_abstract && $result .= 'abstract ';
-        $is_final && $result .= 'final ';
-        $result .= 'class ';
+
+        if ($is_interface) {
+            $result = 'interface ';
+        } else {
+            $is_abstract && $result .= 'abstract ';
+            $is_final && $result .= 'final ';
+            $result .= 'class ';
+        }
+
         $result .= $reflection_class->getShortName();
         $parent_name && $result .= " extends {$parent_name}";
         

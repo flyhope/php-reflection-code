@@ -13,6 +13,13 @@ class DocsFetch {
      * @var array
      */
     protected static $_declared_classes = array();
+    
+    /**
+     * 所有接口名称
+     * 
+     * @var array
+     */
+    protected static $_declared_interfaces = array();
 
     /**
      * 输出目录DIR
@@ -64,11 +71,23 @@ class DocsFetch {
             self::$_declared_classes = get_declared_classes();
         }
         
-        $classes = array_filter(self::$_declared_classes, function($value) use ($class_prefix) {
+        if (!self::$_declared_interfaces) {
+            self::$_declared_interfaces = get_declared_interfaces();
+        }
+        
+        // 过滤方法
+        $filter_function = function($value) use ($class_prefix) {
             return stripos($value, $class_prefix) === 0;
-        });
+        };
+        
+        $classes = array_filter(self::$_declared_classes, $filter_function);
+        $interfaces = array_filter(self::$_declared_interfaces, $filter_function);
         
         foreach ($classes as $class_name) {
+            $this->processEq($class_name, trim($class_prefix, '/_'));
+        }
+        
+        foreach ($interfaces as $class_name) {
             $this->processEq($class_name, trim($class_prefix, '/_'));
         }
         
