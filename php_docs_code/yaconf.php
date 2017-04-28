@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaconf {
+class yaconf {
 
 
 static public function get($name) {}

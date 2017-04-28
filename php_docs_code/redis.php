@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-class Redis {
+class redis {
 
 const REDIS_NOT_FOUND = 0;
 const REDIS_STRING = 1;

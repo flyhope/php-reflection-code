@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Event {
+class swoole_event {
 
 
 static public function add($fd, $read_callback, $write_callback = null, $events = null) {}

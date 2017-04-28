@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Process {
+class swoole_process {
 
 const IPC_NOWAIT = 256;
 

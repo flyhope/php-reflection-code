@@ -27,7 +27,7 @@ class Model_Parse {
         $doc_title = ucfirst($class_name) . " Document";
         $result = self::showTitle($doc_title);
         
-        $result .= self::showClass($reflection) . " {\n\n";
+        $result .= self::showClass($class_name, $reflection) . " {\n\n";
 
         // 输出常量
         foreach ($reflection->getConstants() as $key => $value) {
@@ -88,9 +88,11 @@ class Model_Parse {
     
     /**
      * 获取Class定义的方法
+     * 
+     * @param string          $class_name
      * @param ReflectionClass $reflection_class
      */
-    static public function showClass(ReflectionClass $reflection_class) {
+    static public function showClass($class_name, ReflectionClass $reflection_class) {
         $is_interface = $reflection_class->isInterface();
         $is_abstract = $reflection_class->isAbstract();
         $is_final = $reflection_class->isFinal();
@@ -98,28 +100,32 @@ class Model_Parse {
         $parent_name = $parent_class ? $parent_class->getName() : '';
         $interface_names = $reflection_class->getInterfaceNames();
         
+        // 此处不能反射，有些扩展定义的不规范
+        $class_path = explode('\\', $class_name);
+        $class_basename = array_pop($class_path);
+        $namespace = $class_path ? implode('\\', $class_path) : '';
+        
         // 处理命名空间
         $result = '';
-        $namespace = $reflection_class->getNamespaceName();
         if ($namespace) {
             $result .= "namespace {$namespace};\n";
         }
 
         if ($is_interface) {
-            $result = 'interface ';
+            $result .= 'interface ';
         } else {
             $is_abstract && $result .= 'abstract ';
             $is_final && $result .= 'final ';
             $result .= 'class ';
         }
 
-        $result .= $reflection_class->getShortName();
-        $parent_name && $result .= " extends {$parent_name}";
+        $result .= $class_basename;
+        $parent_name && $result .= " extends \\{$parent_name}";
         
         //追加Interface
         $interface_names = $reflection_class->getInterfaceNames();
         if($interface_names) {
-            $result .= ' implements ' . implode(',', $interface_names);
+            $result .= ' implements \\' . implode(',\\', $interface_names);
         }
         
         return $result;

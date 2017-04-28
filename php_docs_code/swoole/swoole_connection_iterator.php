@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Connection;
-class Iterator implements Iterator,Traversable,Countable,ArrayAccess {
+class swoole_connection_iterator implements \Iterator,\Traversable,\Countable,\ArrayAccess {
 
 
 public function rewind() {}

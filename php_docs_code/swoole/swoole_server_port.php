@@ -4,12 +4,12 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Server;
-class Port {
+class swoole_server_port {
 
 
 private function __construct() {}
 public function __destruct() {}
 public function set($settings) {}
 public function on($event_name, $callback) {}
+public function getSocket() {}
 }

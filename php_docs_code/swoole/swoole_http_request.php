@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Http;
-class Request {
+class swoole_http_request {
 
 
 public function rawcontent() {}

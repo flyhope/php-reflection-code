@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Timer {
+class swoole_timer {
 
 
 static public function tick($ms, $callback, $param = null) {}

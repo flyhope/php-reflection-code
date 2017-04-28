@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Http;
-class Client {
+class swoole_http_client {
 
 public $errCode = 0;
 public $sock = 0;

@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Server {
+class swoole_server {
 
 
 public function __construct($host, $port = null, $mode = null, $sock_type = null) {}
@@ -44,5 +43,6 @@ public function defer($callback) {}
 public function sendMessage($dst_worker_id, $data) {}
 public function addProcess($process) {}
 public function stats() {}
+public function getSocket($port = null) {}
 public function bind($fd, $uid) {}
 }

@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Client {
+class swoole_client {
 
 const MSG_OOB = 1;
 const MSG_PEEK = 2;
@@ -34,4 +33,5 @@ public function getsockname() {}
 public function getpeername() {}
 public function close($force = null) {}
 public function on($event_name, $callback) {}
+public function getSocket() {}
 }

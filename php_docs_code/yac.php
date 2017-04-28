@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-class Yac {
+class yac {
 
 protected $_prefix = '';
 

@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Http;
-class Server extends Swoole\Server {
+class swoole_http_server extends \Swoole\Server {
 
 private $global = 0;
 
@@ -45,5 +44,6 @@ public function defer($callback) {}
 public function sendMessage($dst_worker_id, $data) {}
 public function addProcess($process) {}
 public function stats() {}
+public function getSocket($port = null) {}
 public function bind($fd, $uid) {}
 }

@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\WebSocket;
-class Frame {
+class swoole_websocket_frame {
 
 
 }

@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Channel {
+class swoole_channel {
 
 
 public function __construct($size) {}

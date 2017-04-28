@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Coroutine;
-class Client {
+class swoole_client_coro {
 
 const MSG_OOB = 1;
 const MSG_PEEK = 2;

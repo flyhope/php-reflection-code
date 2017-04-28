@@ -1,11 +1,11 @@
 <?php
 /**
- * Swoole\Coroutine\MySQL\Exception Document
+ * Swoole\MySQL\Exception Document
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Coroutine\MySQL;
-class Exception extends Exception implements Throwable {
+namespace Swoole\MySQL;
+class Exception extends \Exception implements \Throwable {
 
 protected $message = '';
 protected $code = 0;

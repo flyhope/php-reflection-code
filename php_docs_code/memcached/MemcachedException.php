@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-class MemcachedException extends RuntimeException implements Throwable {
+class MemcachedException extends \RuntimeException implements \Throwable {
 
 protected $message = '';
 protected $code = 0;

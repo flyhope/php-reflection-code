@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Coroutine\Http;
-class Client {
+class swoole_http_client_coro {
 
 public $errCode = 0;
 public $sock = 0;

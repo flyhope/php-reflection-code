@@ -4,10 +4,10 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\Http;
-class Response {
+class swoole_http_response {
 
 
+public function initHeader() {}
 public function cookie($name, $value = null, $expires = null, $path = null, $domain = null, $secure = null, $httponly = null) {}
 public function rawcookie($name, $value = null, $expires = null, $path = null, $domain = null, $secure = null, $httponly = null) {}
 public function status($http_code) {}

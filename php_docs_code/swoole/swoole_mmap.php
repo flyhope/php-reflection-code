@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Mmap {
+class swoole_mmap {
 
 
 static public function open($filename, $size = null, $offset = null) {}

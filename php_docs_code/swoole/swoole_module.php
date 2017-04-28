@@ -4,9 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Module {
+class swoole_module {
 
 
-public function __call($func, $params) {}
 }

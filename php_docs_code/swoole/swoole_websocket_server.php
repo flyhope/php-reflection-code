@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole\WebSocket;
-class Server extends Swoole\Http\Server {
+class swoole_websocket_server extends \Swoole\Http\Server {
 
 
 public function on($event_name, $callback) {}
@@ -47,5 +46,6 @@ public function defer($callback) {}
 public function sendMessage($dst_worker_id, $data) {}
 public function addProcess($process) {}
 public function stats() {}
+public function getSocket($port = null) {}
 public function bind($fd, $uid) {}
 }

@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Table implements Iterator,Traversable,Countable {
+class swoole_table implements \Iterator,\Traversable,\Countable {
 
 const TYPE_INT = 1;
 const TYPE_STRING = 7;

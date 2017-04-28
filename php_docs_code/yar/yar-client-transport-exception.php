@@ -5,7 +5,7 @@
  * @package Yar 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yar_Client_Transport_Exception extends Yar_Client_Exception implements Throwable {
+class Yar_Client_Transport_Exception extends Yar_Client_Exception {
 
     protected $message = '';
     
@@ -21,8 +21,6 @@ class Yar_Client_Transport_Exception extends Yar_Client_Exception implements Thr
     private function __clone() {}
     
     public function __construct($message = null, $code = null, $previous = null) {}
-    
-    public function __wakeup() {}
     
     public function getMessage() {}
     

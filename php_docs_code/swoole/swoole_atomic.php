@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Atomic {
+class swoole_atomic {
 
 
 public function __construct($value = null) {}

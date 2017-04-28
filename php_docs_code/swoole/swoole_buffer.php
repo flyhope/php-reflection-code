@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Buffer {
+class swoole_buffer {
 
 
 public function __construct($size = null) {}

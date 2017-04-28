@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Async {
+class swoole_async {
 
 
 static public function read($filename, $callback, $chunk_size = null, $offset = null) {}

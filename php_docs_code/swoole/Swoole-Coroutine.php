@@ -8,6 +8,8 @@ namespace Swoole;
 class Coroutine {
 
 
+static public function create() {}
+static public function cli_wait() {}
 static public function suspend() {}
 static public function resume() {}
 static public function getuid() {}

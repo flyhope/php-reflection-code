@@ -4,8 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-namespace Swoole;
-class Lock {
+class swoole_lock {
 
 
 public function __construct($type = null, $filename = null) {}
