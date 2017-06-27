@@ -10,6 +10,23 @@ PHP反射IDE自动提示生成器
 
 ## 使用方法
 
+直接设置为你的GIT子项目更新，或把php_docs_code中的代码置于你的项目中，在IDE即可自动提示。
+
+内置类库包括：
+
+* Memcached
+* Redis
+* Swoole
+* Yaf
+* Yar
+* Yac
+* Yaconf
+
+
+## 自助生成方法
+
+如果自带的类库仍不满足你的需求，可以自助生成。
+
 ### 通过反射获取输出PHP空方法定义
 ```bash
 php php-reflection-code.php $extension_class_name
