@@ -4,7 +4,7 @@
  * 解析生成文档方法
  *
  * @package Model
- * @author  chengxuan <chengxuan@staff.weibo.com>
+ * @author  Leelmes <i@chengxuan.li>
  */
 class Model_Parse {
     
