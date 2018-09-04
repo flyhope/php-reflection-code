@@ -23,10 +23,17 @@ class Model_Manual {
         }
         
         // SVN签出
-        $cmd = "svn export 'http://svn.php.net/repository/phpdoc/zh/trunk/reference/{$ext_name}' {$docs_xml_dir} --force";
-        `$cmd`;
-        
-        $dir = new DirectoryIterator($docs_xml_dir);
+        $cmd = "svn export 'http://svn.php.net/repository/phpdoc/zh/trunk/reference/{$ext_name}' {$docs_xml_dir} --force 2>&1";
+		exec($cmd, $output, $cmd_code);
+		
+		// 中文签出失败，尝试英文的
+		if ($cmd_code) {
+			$cmd = "svn export 'http://svn.php.net/repository/phpdoc/en/trunk/reference/{$ext_name}' {$docs_xml_dir} --force";
+			exec($cmd, $output, $cmd_code);
+		}
+    
+        $flag = FilesystemIterator::SKIP_DOTS | FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO;
+        $dir = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($docs_xml_dir, $flag),RecursiveIteratorIterator::CHILD_FIRST);
         foreach($dir as $file) {
             $pathname = $file->getPathname();
             $filename = $file->getFilename();
@@ -39,7 +46,7 @@ class Model_Manual {
             // 只处理指定扩展开头的
             if(stripos($filename, $ext_name) === 0) {
                 $response = self::_parseXmlDocs($file, $ext_name);
-                call_user_func($callback, pathinfo($filename, PATHINFO_FILENAME), $response);
+                $response && call_user_func($callback, pathinfo($filename, PATHINFO_FILENAME), $response);
             }
         }
     }
@@ -79,17 +86,24 @@ class Model_Manual {
         }
 
         // 获取类名称
-        preg_match('#<classsynopsisinfo>(.+)</classsynopsisinfo>#isU', $xml, $classsynopsisinfo);
-        $classsynopsisinfo = simplexml_load_string($classsynopsisinfo[0]);
-        foreach($classsynopsisinfo->ooclass as $value) {
-            $modifier = isset($value->modifier) ? $value->modifier : '';
-            switch($modifier) {
-                case 'extends' :
-                    break;
-                default :
-                    $class_name = $value->classname;
-                    break 2;
+        $class_name = '';
+        if (preg_match('#<classsynopsisinfo>(.+)</classsynopsisinfo>#isU', $xml, $classsynopsisinfo)) {
+            $classsynopsisinfo = simplexml_load_string($classsynopsisinfo[0]);
+            foreach($classsynopsisinfo->ooclass as $value) {
+                $modifier = isset($value->modifier) ? $value->modifier : '';
+                switch($modifier) {
+                    case 'extends' :
+                        break;
+                    default :
+                        $class_name = $value->classname;
+                        break 2;
+                }
             }
+        }
+        
+        // 不是类，不处理
+        if (!$class_name) {
+            return false;
         }
     
         // 初始化处理类
@@ -105,7 +119,10 @@ class Model_Manual {
             //获取类属性注释
             $varname = (string)$field_xml_obj->varname;
             $field_content = '';
-            if(preg_match("#<varlistentry xml:id=\"{$name}.props.{$varname}\">(.+)</varlistentry>#isU", $xml, $varlistentry)) {
+			
+			$name_quote = preg_quote($name);
+			$varname_quote = preg_quote($varname);
+            if(preg_match("#<varlistentry xml:id=\"{$name_quote}.props.{$varname_quote}\">(.+)</varlistentry>#isU", $xml, $varlistentry)) {
                 if(preg_match_all('#<para>(.*)</para>#sU', $section_intro[1], $varlistentry)) {
                     $field_content = self::_formatContent($varlistentry[1]);
                 }
@@ -118,56 +135,61 @@ class Model_Manual {
         
         //处理类方法
         $methods = array();
-        $func_dir = $file->getPath() . '/' . str_replace('-', '_', pathinfo($file->getFilename(), PATHINFO_FILENAME));
+        $func_dir = $file->getPath() . '/' . str_replace(['-', '.'], ['_', '/'], pathinfo($file->getFilename(), PATHINFO_FILENAME));
         if(is_dir($func_dir)) {
             $func_dir = new DirectoryIterator($func_dir);
             foreach($func_dir as $funcfile) {
                 if(pathinfo($funcfile->getFilename(), PATHINFO_EXTENSION) === 'xml') {
                     $func_xml = file_get_contents($funcfile->getPathname());
-                    preg_match("#<methodsynopsis>.+</methodsynopsis>#isU", $func_xml, $methodsynopsis);
-                    $methodsynopsis = $methodsynopsis[0];
-                    $methodsynopsis = simplexml_load_string($methodsynopsis);
-    
-    
-                    //获取方法名称
-                    $method_name = (string)$methodsynopsis->methodname;
-                    $method_name = ltrim(strrchr($method_name, ":"), ":");
-    
-                    //获取方法描述
-                    $method_content = '';
-                    if(preg_match('#<refpurpose>(.+)</refpurpose>#sU', $func_xml, $refpurpose)) {
-                        $method_content = trim($refpurpose[1]);
-                    }
-    
-                    //获得方法参数
-                    $method_params = array();
-                    foreach($methodsynopsis->methodparam as $value) {
-                        //获取参数是不是可选参数
-                        $attributes = $value->attributes();
-                        $choice_opt = (string)$attributes->choice === 'opt';
-    
-                        //获取可选参数默认值
-                        $parameter = (string)$value->parameter;
-                        $initializer = (string)$value->initializer;
-                        $initializer === '' && $initializer = 'null';
-    
-                        //获取方法参数的注释
-                        $func_para_content = '';
-                        if(preg_match("#<varlistentry>.*<parameter>{$parameter}</parameter>(.+)</varlistentry>#isU", $func_xml, $varlistentry)) {
-                            if(preg_match_all('#<para>(.*)</para>#sU', $varlistentry[1], $func_para_para)) {
-                                $func_para_content = self::_formatContent($func_para_para[1]);
-                                $func_para_content = str_replace("\n", ' ', $func_para_content);
-                            }
-                        }
-    
-                        $method_params[$parameter] = array(
-                            'type'		  => (string)$value->type,
-                            'content'     => $func_para_content,
-                            'choice_opt'  => $choice_opt,
-                            'initializer' => $initializer,
-                        );
-                    }
-    
+					$method_name = '';
+                    if (preg_match("#<methodsynopsis>.+</methodsynopsis>#isU", $func_xml, $methodsynopsis)) {
+$methodsynopsis = $methodsynopsis[0];
+						$methodsynopsis = simplexml_load_string($methodsynopsis);
+		
+		
+						//获取方法名称
+						$method_name = (string)$methodsynopsis->methodname;
+						$method_name = ltrim(strrchr($method_name, ":"), ":");
+		
+						//获取方法描述
+						$method_content = '';
+						if(preg_match('#<refpurpose>(.+)</refpurpose>#sU', $func_xml, $refpurpose)) {
+							$method_content = trim($refpurpose[1]);
+						}
+		
+						//获得方法参数
+						$method_params = array();
+						foreach($methodsynopsis->methodparam as $value) {
+							//获取参数是不是可选参数
+							$attributes = $value->attributes();
+							$choice_opt = (string)$attributes->choice === 'opt';
+		
+							//获取可选参数默认值
+							$parameter = (string)$value->parameter;
+							$initializer = (string)$value->initializer;
+							$initializer === '' && $initializer = 'null';
+		
+							//获取方法参数的注释
+							$func_para_content = '';
+							if(preg_match("#<varlistentry>.*<parameter>{$parameter}</parameter>(.+)</varlistentry>#isU", $func_xml, $varlistentry)) {
+								if(preg_match_all('#<para>(.*)</para>#sU', $varlistentry[1], $func_para_para)) {
+									$func_para_content = self::_formatContent($func_para_para[1]);
+									$func_para_content = str_replace("\n", ' ', $func_para_content);
+								}
+							}
+		
+							$method_params[$parameter] = array(
+								'type'		  => (string)$value->type,
+								'content'     => $func_para_content,
+								'choice_opt'  => $choice_opt,
+								'initializer' => $initializer,
+							);
+						}
+
+					} else {
+						// var_dump($funcfile->getPathname());
+					}
+                    
                     if($method_name) {
                         $refdoc->methods[$method_name] = array(
                             'params'	=> $method_params,

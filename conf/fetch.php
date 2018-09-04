@@ -17,19 +17,21 @@ return array(
     'eq' => array(
         'redis',
         'yac',
-        'yaconf',
     ),
 
     // 类前缀
     'prefix' => array(
-        'memcached',
-        'swoole',
+        'swoole_',
     ),
 
     
     // 从PHP手册获取，确保 http://svn.php.net/repository/phpdoc/zh/trunk/reference/ 存在
     'manual' => array(
+		'swoole',
         'yar',
         'yaf',
+		'yaconf',
+		'memcached',
+		
     )
 );
