@@ -7,6 +7,16 @@
 class swoole_process {
 
 const IPC_NOWAIT = 256;
+const PIPE_MASTER = 1;
+const PIPE_WORKER = 2;
+const PIPE_READ = 3;
+const PIPE_WRITE = 4;
+public $pipe;
+public $callback;
+public $msgQueueId;
+public $msgQueueKey;
+public $pid;
+public $id;
 
 public function __construct($callback, $redirect_stdin_and_stdout = null, $pipe_type = null) {}
 public function __destruct() {}
@@ -16,7 +26,9 @@ static public function alarm($usec) {}
 static public function kill($pid, $signal_no = null) {}
 static public function daemon($nochdir = null, $noclose = null) {}
 static public function setaffinity($cpu_settings) {}
-public function useQueue($key, $mode = null) {}
+public function setTimeout($seconds) {}
+public function setBlocking($blocking) {}
+public function useQueue($key = null, $mode = null) {}
 public function statQueue() {}
 public function freeQueue() {}
 public function start() {}

@@ -19,10 +19,15 @@ public $errno = 0;
 
 public function __construct() {}
 public function __destruct() {}
-public function connect() {}
-public function query() {}
+public function connect($server_config) {}
+public function query($sql, $timeout = null) {}
 public function recv() {}
-public function setDefer() {}
+public function escape($string, $flags = null) {}
+public function begin() {}
+public function commit() {}
+public function rollback() {}
+public function prepare($query, $timeout = null) {}
+public function setDefer($defer = null) {}
 public function getDefer() {}
 public function close() {}
 }

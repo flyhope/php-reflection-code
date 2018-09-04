@@ -14,4 +14,5 @@ static public function exit() {}
 static public function write($fd, $data) {}
 static public function wait() {}
 static public function defer($callback) {}
+static public function cycle($callback, $before = null) {}
 }

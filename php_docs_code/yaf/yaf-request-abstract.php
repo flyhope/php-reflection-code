@@ -46,6 +46,10 @@ abstract class Yaf_Request_Abstract {
      */
     public function isPost() {}
     
+    public function isDelete() {}
+    
+    public function isPatch() {}
+    
     /**
      * The isPut purpose
      *

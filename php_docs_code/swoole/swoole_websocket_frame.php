@@ -6,5 +6,9 @@
  */
 class swoole_websocket_frame {
 
+public $fd = 0;
+public $data;
+public $opcode = 0;
+public $finish = false;
 
 }

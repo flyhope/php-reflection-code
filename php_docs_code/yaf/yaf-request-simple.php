@@ -99,6 +99,10 @@ final class Yaf_Request_Simple extends Yaf_Request_Abstract {
     
     public function isPost() {}
     
+    public function isDelete() {}
+    
+    public function isPatch() {}
+    
     public function isPut() {}
     
     public function isHead() {}

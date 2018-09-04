@@ -20,6 +20,7 @@ const OPT_PREFIX = 2;
 const OPT_READ_TIMEOUT = 3;
 const SERIALIZER_NONE = 0;
 const SERIALIZER_PHP = 1;
+const SERIALIZER_IGBINARY = 2;
 const OPT_SCAN = 4;
 const SCAN_RETRY = 1;
 const SCAN_NORETRY = 0;
@@ -153,6 +154,7 @@ public function hIncrBy() {}
 public function hIncrByFloat() {}
 public function hMset() {}
 public function hMget() {}
+public function hStrLen() {}
 public function multi() {}
 public function discard() {}
 public function exec() {}
@@ -192,6 +194,12 @@ public function setOption() {}
 public function config() {}
 public function slowlog() {}
 public function rawcommand() {}
+public function geoadd() {}
+public function geohash() {}
+public function geopos() {}
+public function geodist() {}
+public function georadius() {}
+public function georadiusbymember() {}
 public function getHost() {}
 public function getPort() {}
 public function getDBNum() {}

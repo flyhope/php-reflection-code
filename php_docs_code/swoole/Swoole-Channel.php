@@ -12,5 +12,6 @@ public function __construct($size) {}
 public function __destruct() {}
 public function push($data) {}
 public function pop() {}
+public function peek() {}
 public function stats() {}
 }

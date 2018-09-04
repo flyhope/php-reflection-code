@@ -4,7 +4,7 @@
  *
  * @author Leelmes <i@chengxuan.li>
  */
-class swoole_connection_iterator implements \Iterator,\Traversable,\Countable,\ArrayAccess {
+class swoole_connection_iterator implements \Iterator,\Traversable,\ArrayAccess,\Countable {
 
 
 public function rewind() {}
@@ -13,6 +13,7 @@ public function current() {}
 public function key() {}
 public function valid() {}
 public function count() {}
+public function __destruct() {}
 public function offsetExists($fd) {}
 public function offsetGet($fd) {}
 public function offsetSet($fd, $value) {}

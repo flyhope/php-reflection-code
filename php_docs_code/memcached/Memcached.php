@@ -6,18 +6,18 @@
  */
 class Memcached {
 
-const LIBMEMCACHED_VERSION_HEX = 16777238;
+const LIBMEMCACHED_VERSION_HEX = 16777240;
 const OPT_COMPRESSION = -1001;
 const OPT_COMPRESSION_TYPE = -1004;
 const OPT_PREFIX_KEY = -1002;
 const OPT_SERIALIZER = -1003;
 const OPT_USER_FLAGS = -1006;
 const OPT_STORE_RETRY_COUNT = -1005;
-const HAVE_IGBINARY = 0;
-const HAVE_JSON = 1;
-const HAVE_MSGPACK = 0;
-const HAVE_SESSION = 1;
-const HAVE_SASL = 1;
+const HAVE_IGBINARY = true;
+const HAVE_JSON = true;
+const HAVE_MSGPACK = true;
+const HAVE_SESSION = true;
+const HAVE_SASL = true;
 const OPT_HASH = 2;
 const HASH_DEFAULT = 0;
 const HASH_MD5 = 1;
@@ -58,6 +58,7 @@ const OPT_USE_UDP = 27;
 const OPT_NUMBER_OF_REPLICAS = 29;
 const OPT_RANDOMIZE_REPLICA_READ = 30;
 const OPT_REMOVE_FAILED_SERVERS = 35;
+const OPT_SERVER_TIMEOUT_LIMIT = 37;
 const RES_SUCCESS = 0;
 const RES_FAILURE = 1;
 const RES_HOST_LOOKUP_FAILURE = 2;
@@ -153,7 +154,7 @@ public function getLastErrorMessage() {}
 public function getLastErrorCode() {}
 public function getLastErrorErrno() {}
 public function getLastDisconnectedServer() {}
-public function getStats() {}
+public function getStats($args) {}
 public function getVersion() {}
 public function getAllKeys() {}
 public function flush($delay = null) {}
