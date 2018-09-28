@@ -57,13 +57,11 @@ class MySQL {
      */
     public function recv() {}
     
-    public function escape($string, $flags = null) {}
+    public function begin($timeout = null) {}
     
-    public function begin() {}
+    public function commit($timeout = null) {}
     
-    public function commit() {}
-    
-    public function rollback() {}
+    public function rollback($timeout = null) {}
     
     public function prepare($query, $timeout = null) {}
     

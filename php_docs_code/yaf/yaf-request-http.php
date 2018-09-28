@@ -67,8 +67,6 @@ class Yaf_Request_Http extends Yaf_Request_Abstract {
      */
     public function getCookie() {}
     
-    public function getRaw() {}
-    
     /**
      * The getFiles purpose
      *

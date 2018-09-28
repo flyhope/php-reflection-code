@@ -20,7 +20,6 @@ const OPT_PREFIX = 2;
 const OPT_READ_TIMEOUT = 3;
 const SERIALIZER_NONE = 0;
 const SERIALIZER_PHP = 1;
-const SERIALIZER_IGBINARY = 2;
 const OPT_SCAN = 4;
 const SCAN_RETRY = 1;
 const SCAN_NORETRY = 0;

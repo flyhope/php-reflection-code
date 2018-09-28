@@ -62,8 +62,6 @@ class MySQL {
     
     public function rollback($callback) {}
     
-    public function escape($string, $flags = null) {}
-    
     /**
      * Run the SQL query.
      *
