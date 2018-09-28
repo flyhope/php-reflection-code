@@ -39,7 +39,6 @@ class DocsFetch {
                 $path_prefix_use = str_replace('\\', '-', $path_prefix);
                 $path = "{$path_prefix_use}/{$path}";
             }
-            $path_prefix && $path = "{$path_prefix}/{$path}";
             $result = $this->write($path, $content);
         } else {
             $result = false;
