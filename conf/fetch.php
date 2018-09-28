@@ -17,11 +17,13 @@ return array(
     'eq' => array(
         'redis',
         'yac',
+        'co',
     ),
 
     // 类前缀
     'prefix' => array(
-        'swoole_',
+        'swoole',
+        'co\\',
     ),
 
     
