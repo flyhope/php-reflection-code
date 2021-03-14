@@ -34,6 +34,8 @@ return array(
         'yar',
         'yaf',
 		'yaconf',
-		'memcached',
+    
+        // memcached在PHPStorm中存在，暂不处理
+//		'memcached',
     )
 );
