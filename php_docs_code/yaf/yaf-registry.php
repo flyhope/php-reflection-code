@@ -9,22 +9,11 @@
  */
 final class Yaf_Registry {
 
-    protected static $_instance;
-    
-    protected $_entries;
-    
 
     /**
      * Yaf_Registry implements singleton
      */
     private function __construct() {}
-    
-    /**
-     * The __clone purpose
-     *
-     * @return void
-     */
-    private function __clone() {}
     
     /**
      * Retrieve an item from registry

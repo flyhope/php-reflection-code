@@ -19,8 +19,9 @@ class Memcached {
     const HAVE_IGBINARY = false;
     const HAVE_JSON = false;
     const HAVE_MSGPACK = false;
+    const HAVE_ENCODING = true;
     const HAVE_SESSION = true;
-    const HAVE_SASL = false;
+    const HAVE_SASL = true;
     const OPT_HASH = 2;
     const HASH_DEFAULT = 0;
     const HASH_MD5 = 1;
@@ -96,6 +97,9 @@ class Memcached {
     const RES_KEY_TOO_BIG = 39;
     const RES_SERVER_TEMPORARILY_DISABLED = 47;
     const RES_SERVER_MEMORY_ALLOCATION_FAILURE = 48;
+    const RES_AUTH_PROBLEM = 40;
+    const RES_AUTH_FAILURE = 41;
+    const RES_AUTH_CONTINUE = 42;
     const RES_PAYLOAD_FAILURE = -1001;
     const SERIALIZER_PHP = 1;
     const SERIALIZER_IGBINARY = 2;
@@ -151,8 +155,7 @@ class Memcached {
      * 检索多个元素
      *
      * @param array $keys 要检索的key的数组。
-     * @param array $cas_tokens 用来存储检索到的元素的CAS标记。
-     * @param int $flags get操作的附加选项。
+     * @param int $flags Get 操作的附加选项。
      *
      * @return mixed
      */
@@ -219,7 +222,7 @@ class Memcached {
     public function set($key, $value, $expiration = null) {}
     
     /**
-     * Store an item on a specific server
+     * 将元素存储到指定的服务器上
      *
      * @param string $server_key &memcached.parameter.server_key;
      * @param string $key &memcached.parameter.key;
@@ -311,7 +314,7 @@ class Memcached {
      *
      * @return bool
      */
-    public function append($key, $value, $expiration = null) {}
+    public function append($key, $value) {}
     
     /**
      * 向指定服务器上已存在元素后追加数据
@@ -322,7 +325,7 @@ class Memcached {
      *
      * @return bool
      */
-    public function appendByKey($server_key, $key, $value, $expiration = null) {}
+    public function appendByKey($server_key, $key, $value) {}
     
     /**
      * 向一个已存在的元素前面追加数据
@@ -332,7 +335,7 @@ class Memcached {
      *
      * @return bool
      */
-    public function prepend($key, $value, $expiration = null) {}
+    public function prepend($key, $value) {}
     
     /**
      * Prepend data to an existing item on a specific server
@@ -343,7 +346,7 @@ class Memcached {
      *
      * @return bool
      */
-    public function prependByKey($server_key, $key, $value, $expiration = null) {}
+    public function prependByKey($server_key, $key, $value) {}
     
     /**
      * 替换已存在key下的元素
@@ -396,7 +399,7 @@ class Memcached {
     /**
      * 增加数值元素的值
      *
-     * @param string $key 要增加值的元素的key。
+     * @param string $key 要增加值的元素的 key。
      * @param int $offset 要将元素的值增加的大小。
      *
      * @return int
@@ -477,7 +480,7 @@ class Memcached {
      *
      * @return array
      */
-    public function getStats($args) {}
+    public function getStats($type = null) {}
     
     /**
      * 获取服务器池中所有服务器的版本信息
@@ -519,6 +522,10 @@ class Memcached {
     public function setOptions($options) {}
     
     public function setBucket($host_map, $forward_map, $replicas) {}
+    
+    public function setSaslAuthData($username, $password) {}
+    
+    public function setEncodingKey($key) {}
     
     public function isPersistent() {}
     

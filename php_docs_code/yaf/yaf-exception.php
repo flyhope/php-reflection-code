@@ -5,7 +5,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaf_Exception extends Exception implements Throwable {
+class Yaf_Exception extends Exception implements Stringable,Throwable {
 
     protected $file;
     
@@ -18,8 +18,6 @@ class Yaf_Exception extends Exception implements Throwable {
     protected $previous;
     
 
-    private function __clone() {}
-    
     /**
      * The __construct purpose
      */

@@ -9,12 +9,6 @@
  */
 class Yaf_View_Simple implements Yaf_View_Interface {
 
-    protected $_tpl_vars;
-    
-    protected $_tpl_dir;
-    
-    protected $_options;
-    
 
     /**
      * Constructor of Yaf_View_Simple
@@ -23,15 +17,6 @@ class Yaf_View_Simple implements Yaf_View_Interface {
      * @param array $options 
      */
     public function __construct($template_dir, $options = null) {}
-    
-    /**
-     * The __isset purpose
-     *
-     * @param string $name 
-     *
-     * @return void
-     */
-    public function __isset($name) {}
     
     public function get($name = null) {}
     
@@ -108,7 +93,7 @@ class Yaf_View_Simple implements Yaf_View_Interface {
      *
      * @return string
      */
-    public function getScriptPath() {}
+    public function getScriptPath($request = null) {}
     
     /**
      * 获取视图引擎的一个模板变量值

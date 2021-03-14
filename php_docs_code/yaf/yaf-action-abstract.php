@@ -13,20 +13,6 @@
  */
 abstract class Yaf_Action_Abstract extends Yaf_Controller_Abstract {
 
-    public $actions;
-    
-    protected $_module;
-    
-    protected $_name;
-    
-    protected $_request;
-    
-    protected $_response;
-    
-    protected $_invoke_args;
-    
-    protected $_view;
-    
     protected $_controller;
     
 
@@ -47,6 +33,10 @@ abstract class Yaf_Action_Abstract extends Yaf_Controller_Abstract {
      */
     public function getController() {}
     
+    public function getControllerName() {}
+    
+    public function __construct($request, $response, $view, $args = null) {}
+    
     protected function render($tpl, $parameters = null) {}
     
     protected function display($tpl, $parameters = null) {}
@@ -55,9 +45,11 @@ abstract class Yaf_Action_Abstract extends Yaf_Controller_Abstract {
     
     public function getResponse() {}
     
-    public function getModuleName() {}
-    
     public function getView() {}
+    
+    public function getName() {}
+    
+    public function getModuleName() {}
     
     public function initView($options = null) {}
     
@@ -72,9 +64,5 @@ abstract class Yaf_Action_Abstract extends Yaf_Controller_Abstract {
     public function getInvokeArgs() {}
     
     public function getInvokeArg($name) {}
-    
-    public function __construct() {}
-    
-    private function __clone() {}
     
 }

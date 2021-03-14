@@ -7,86 +7,15 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-final class Yaf_Request_Simple extends Yaf_Request_Abstract {
+class Yaf_Request_Simple extends Yaf_Request_Abstract {
 
     const SCHEME_HTTP = 'http';
     const SCHEME_HTTPS = 'https';
-    public $module;
-    
-    public $controller;
-    
-    public $action;
-    
-    public $method;
-    
-    protected $params;
-    
-    protected $language;
-    
-    protected $_exception;
-    
-    protected $_base_uri = '';
-    
-    protected $uri = '';
-    
-    protected $dispatched = false;
-    
-    protected $routed = false;
-    
 
     /**
      * The __construct purpose
      */
-    public function __construct() {}
-    
-    /**
-     * The __clone purpose
-     *
-     * @return void
-     */
-    private function __clone() {}
-    
-    /**
-     * The getQuery purpose
-     *
-     * @return void
-     */
-    public function getQuery() {}
-    
-    /**
-     * The getRequest purpose
-     *
-     * @return void
-     */
-    public function getRequest() {}
-    
-    /**
-     * The getPost purpose
-     *
-     * @return void
-     */
-    public function getPost() {}
-    
-    /**
-     * The getCookie purpose
-     *
-     * @return void
-     */
-    public function getCookie() {}
-    
-    /**
-     * The getFiles purpose
-     *
-     * @return void
-     */
-    public function getFiles() {}
-    
-    /**
-     * The get purpose
-     *
-     * @return void
-     */
-    public function get() {}
+    public function __construct($method = null, $module = null, $controller = null, $action = null, $params = null) {}
     
     /**
      * The isXmlHttpRequest purpose
@@ -111,15 +40,61 @@ final class Yaf_Request_Simple extends Yaf_Request_Abstract {
     
     public function isCli() {}
     
-    public function getServer($name, $default = null) {}
+    /**
+     * The getQuery purpose
+     *
+     * @return void
+     */
+    public function getQuery($name = null, $default = null) {}
     
-    public function getEnv($name, $default = null) {}
+    /**
+     * The getRequest purpose
+     *
+     * @return void
+     */
+    public function getRequest($name = null, $default = null) {}
+    
+    /**
+     * The getPost purpose
+     *
+     * @return void
+     */
+    public function getPost($name = null, $default = null) {}
+    
+    /**
+     * The getCookie purpose
+     *
+     * @return void
+     */
+    public function getCookie($name = null, $default = null) {}
+    
+    public function getRaw() {}
+    
+    /**
+     * The getFiles purpose
+     *
+     * @return void
+     */
+    public function getFiles($name = null, $default = null) {}
+    
+    /**
+     * The get purpose
+     *
+     * @return void
+     */
+    public function get($name = null, $default = null) {}
+    
+    public function getServer($name = null, $default = null) {}
+    
+    public function getEnv($name = null, $default = null) {}
     
     public function setParam($name, $value = null) {}
     
-    public function getParam($name, $default = null) {}
+    public function getParam($name = null, $default = null) {}
     
     public function getParams() {}
+    
+    public function clearParams() {}
     
     public function getException() {}
     
@@ -129,11 +104,11 @@ final class Yaf_Request_Simple extends Yaf_Request_Abstract {
     
     public function getActionName() {}
     
-    public function setModuleName($module) {}
+    public function setModuleName($module, $format_name = null) {}
     
-    public function setControllerName($controller) {}
+    public function setControllerName($controller, $format_name = null) {}
     
-    public function setActionName($action) {}
+    public function setActionName($action, $format_name = null) {}
     
     public function getMethod() {}
     
@@ -149,10 +124,10 @@ final class Yaf_Request_Simple extends Yaf_Request_Abstract {
     
     public function isDispatched() {}
     
-    public function setDispatched() {}
+    public function setDispatched($dispatched) {}
     
     public function isRouted() {}
     
-    public function setRouted($flag = null) {}
+    public function setRouted($flag) {}
     
 }

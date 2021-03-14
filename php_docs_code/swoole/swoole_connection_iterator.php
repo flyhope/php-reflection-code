@@ -7,13 +7,14 @@
 class swoole_connection_iterator implements \Iterator,\Traversable,\ArrayAccess,\Countable {
 
 
+public function __construct() {}
+public function __destruct() {}
 public function rewind() {}
 public function next() {}
 public function current() {}
 public function key() {}
 public function valid() {}
 public function count() {}
-public function __destruct() {}
 public function offsetExists($fd) {}
 public function offsetGet($fd) {}
 public function offsetSet($fd, $value) {}

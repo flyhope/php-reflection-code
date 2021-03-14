@@ -5,14 +5,13 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole\Coroutine\MySQL;
-class Exception extends \Exception implements \Throwable {
+class Exception extends \Swoole\Exception implements \Throwable,\Stringable {
 
 protected $message = '';
 protected $code = 0;
 protected $file;
 protected $line;
 
-private function __clone() {}
 public function __construct($message = null, $code = null, $previous = null) {}
 public function __wakeup() {}
 public function getMessage() {}

@@ -8,18 +8,8 @@
 class Yaf_Response_Cli extends Yaf_Response_Abstract {
 
     const DEFAULT_BODY = 'content';
-    protected $_header;
-    
-    protected $_body;
-    
-    protected $_sendheader = false;
-    
 
     public function __construct() {}
-    
-    public function __destruct() {}
-    
-    private function __clone() {}
     
     public function __toString() {}
     

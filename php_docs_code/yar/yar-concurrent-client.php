@@ -23,6 +23,8 @@ class Yar_Concurrent_Client {
      * @param string $method 调用的服务名字(也就是服务方法名).
      * @param array $parameters 调用的参数.
      * @param callable $callback 回调函数, 在远程服务的返回到达的时候被Yar调用, 从而可以处理返回内容.
+     * @param callable $error_callback 
+     * @param array $options 
      *
      * @return int
      */

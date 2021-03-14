@@ -21,7 +21,7 @@ class Yaconf {
      *
      * @return mixed
      */
-    static public function get($name) {}
+    static public function get($name, $default = null) {}
     
     /**
      * Determine if a item exists
@@ -31,5 +31,7 @@ class Yaconf {
      * @return bool
      */
     static public function has($name) {}
+    
+    static public function __debug_info($name) {}
     
 }

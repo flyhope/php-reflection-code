@@ -11,27 +11,6 @@
  */
 final class Yaf_Route_Simple implements Yaf_Route_Interface {
 
-    /**
-     * Yaf_Route_Simple 会匹配请求中的query string，然后找到路由信息。
-     * 你需要做的只是告诉 Yaf_Route_Simple，在$_GET中哪个是Module，哪个是Controller，哪个是Action。
-     * Yaf_Route_Simple::route 总是会返回TRUE，所以把Yaf_Route_Simple放在路由堆栈前面是很重要的，否则其他所有的路由都可能不会被调用到。
-     */
-    protected $controller;
-    
-    /**
-     * Yaf_Route_Simple 会匹配请求中的query string，然后找到路由信息。
-     * 你需要做的只是告诉 Yaf_Route_Simple，在$_GET中哪个是Module，哪个是Controller，哪个是Action。
-     * Yaf_Route_Simple::route 总是会返回TRUE，所以把Yaf_Route_Simple放在路由堆栈前面是很重要的，否则其他所有的路由都可能不会被调用到。
-     */
-    protected $module;
-    
-    /**
-     * Yaf_Route_Simple 会匹配请求中的query string，然后找到路由信息。
-     * 你需要做的只是告诉 Yaf_Route_Simple，在$_GET中哪个是Module，哪个是Controller，哪个是Action。
-     * Yaf_Route_Simple::route 总是会返回TRUE，所以把Yaf_Route_Simple放在路由堆栈前面是很重要的，否则其他所有的路由都可能不会被调用到。
-     */
-    protected $action;
-    
 
     /**
      * Yaf_Route_Simple constructor

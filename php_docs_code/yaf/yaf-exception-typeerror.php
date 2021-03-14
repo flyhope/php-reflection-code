@@ -5,7 +5,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaf_Exception_TypeError extends Yaf_Exception implements Throwable {
+class Yaf_Exception_TypeError extends Yaf_Exception implements Throwable,Stringable {
 
     protected $file;
     
@@ -18,8 +18,6 @@ class Yaf_Exception_TypeError extends Yaf_Exception implements Throwable {
     protected $previous;
     
 
-    private function __clone() {}
-    
     public function __construct($message = null, $code = null, $previous = null) {}
     
     public function __wakeup() {}

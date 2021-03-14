@@ -7,7 +7,7 @@
  * @package Memcached 
  * @author Leelmes <i@chengxuan.li>
  */
-class MemcachedException extends RuntimeException implements Throwable {
+class MemcachedException extends Exception implements Stringable,Throwable {
 
     protected $message = '';
     
@@ -18,8 +18,6 @@ class MemcachedException extends RuntimeException implements Throwable {
     protected $line;
     
 
-    private function __clone() {}
-    
     public function __construct($message = null, $code = null, $previous = null) {}
     
     public function __wakeup() {}

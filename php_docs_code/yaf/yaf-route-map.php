@@ -7,10 +7,6 @@
  */
 final class Yaf_Route_Map implements Yaf_Route_Interface {
 
-    protected $_ctl_router = false;
-    
-    protected $_delimiter;
-    
 
     /**
      * The __construct purpose

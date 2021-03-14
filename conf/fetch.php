@@ -15,7 +15,8 @@ return array(
     
     // 单类
     'eq' => array(
-        'redis',
+        // redis在PHPStorm中存在，暂不处理
+//        'redis',
         'yac',
         'co',
     ),
@@ -34,6 +35,5 @@ return array(
         'yaf',
 		'yaconf',
 		'memcached',
-		
     )
 );
