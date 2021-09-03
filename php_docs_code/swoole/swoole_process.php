@@ -25,9 +25,7 @@ static public function signal($signal_no, $callback) {}
 static public function alarm($usec, $type = null) {}
 static public function kill($pid, $signal_no = null) {}
 static public function daemon($nochdir = null, $noclose = null, $pipes = null) {}
-static public function setAffinity($cpu_settings) {}
-public function setPriority($which, $priority) {}
-public function getPriority($which) {}
+static public function setaffinity($cpu_settings) {}
 public function set($settings) {}
 public function setTimeout($seconds) {}
 public function setBlocking($blocking) {}

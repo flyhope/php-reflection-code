@@ -5,7 +5,7 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole\Database;
-class PDOStatementProxy extends \Swoole\Database\ObjectProxy {
+class PDOStatementProxy extends \Swoole\ObjectProxy {
 
 protected $__object;
 protected $setAttributeContext;
@@ -23,7 +23,6 @@ public function setFetchMode($mode, $classNameObject = null, $ctorarfg = null) {
 public function bindParam($parameter, & $variable, $data_type = null, $length = null, $driver_options = null) {}
 public function bindColumn($column, & $param, $type = null, $maxlen = null, $driverdata = null) {}
 public function bindValue($parameter, $value, $data_type = null) {}
-public function __clone() {}
 public function __getObject() {}
 public function __get($name) {}
 public function __set($name, $value) {}

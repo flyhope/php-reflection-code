@@ -9,6 +9,16 @@
  */
 final class Yaf_Route_Regex implements Yaf_Route_Interface {
 
+    protected $_route;
+    
+    protected $_default;
+    
+    protected $_maps;
+    
+    protected $_verify;
+    
+    protected $_reverse;
+    
 
     /**
      * The __construct purpose
@@ -19,8 +29,6 @@ final class Yaf_Route_Regex implements Yaf_Route_Interface {
      * @param array $verify 
      */
     public function __construct($match, $route, $map = null, $verify = null, $reverse = null) {}
-    
-    public function match($uri) {}
     
     /**
      * The route purpose

@@ -16,12 +16,31 @@
  */
 abstract class Yaf_Controller_Abstract {
 
-
     /**
-     * Yaf_Controller_Abstract constructor
+     * Yaf_Controller_Abstract 是Yaf的MVC体系的核心部分。
+     * MVC是指Model-View-Controller, 是一个用于分离应用逻辑和表现逻辑的设计模式。
+     * 每个用户自定义controller都应当继承Yaf_Controller_Abstract。
+     * 你会发现在你自己的controller中无法定义__construct方法。因此，Yaf_Controller_Abstract
+     * 提供了一个魔术方法Yaf_Controller_Abstract::init()。
+     * 如果在你自己的controller里面已经定义了一个init()方法，当你的controller被实例化的时候，它将被调用。
+     * Action可能需要参数，当一个请求来到的时候，在路由中如果请求的参数有相同名称的变量（例如：Yaf_Request_Abstract::getParam），
+     * Yaf将把他们传递给action方法（see Yaf_Action_Abstract::execute）。
      */
-    public function __construct($request, $response, $view, $args = null) {}
+    public $actions;
     
+    protected $_module;
+    
+    protected $_name;
+    
+    protected $_request;
+    
+    protected $_response;
+    
+    protected $_invoke_args;
+    
+    protected $_view;
+    
+
     /**
      * 渲染视图模板
      *
@@ -57,20 +76,18 @@ abstract class Yaf_Controller_Abstract {
     public function getResponse() {}
     
     /**
-     * 获取当前的视图引擎
-     *
-     * @return Yaf_View_Interface
-     */
-    public function getView() {}
-    
-    public function getName() {}
-    
-    /**
      * 获取当前控制器所属的模块名
      *
      * @return string
      */
     public function getModuleName() {}
+    
+    /**
+     * 获取当前的视图引擎
+     *
+     * @return Yaf_View_Interface
+     */
+    public function getView() {}
     
     /**
      * The initView purpose
@@ -133,5 +150,12 @@ abstract class Yaf_Controller_Abstract {
      * @return void
      */
     public function getInvokeArg($name) {}
+    
+    /**
+     * Yaf_Controller_Abstract constructor
+     */
+    public function __construct() {}
+    
+    private function __clone() {}
     
 }

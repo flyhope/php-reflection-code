@@ -5,7 +5,7 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole\Curl;
-final class Handler implements \Stringable {
+final class Handler {
 
 private $client;
 private $info = array (
@@ -17,7 +17,7 @@ private $info = array (
   'filetime' => -1,
   'ssl_verify_result' => 0,
   'redirect_count' => 0,
-  'total_time' => 5.3E-5,
+  'total_time' => 5.3000000000000000778023478975597981843748129904270172119140625E-5,
   'namelookup_time' => 0.0,
   'connect_time' => 0.0,
   'pretransfer_time' => 0.0,
@@ -69,17 +69,12 @@ private $returnTransfer = false;
 private $method = '';
 private $headers = array (
 );
-private $headerMap = array (
-);
 private $transfer;
 private $errCode = 0;
 private $errMsg = '';
-private $failOnError = false;
 private $closed = false;
-private $cookieJar = '';
 
 public function __construct($url = null) {}
-public function __toString() {}
 public function isAvailable() {}
 public function setOpt($opt, $value) {}
 public function exec() {}
@@ -95,8 +90,6 @@ private function setUrl($url, $setInfo = null) {}
 private function setUrlInfo($urlInfo) {}
 private function setPort($port) {}
 private function setError($code, $msg = null) {}
-private function hasHeader($headerName) {}
-private function setHeader($headerName, $value) {}
 private function setOption($opt, $value) {}
 private function execute() {}
 static private function unparseUrl($parsedUrl) {}

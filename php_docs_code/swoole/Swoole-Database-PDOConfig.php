@@ -8,6 +8,7 @@ namespace Swoole\Database;
 class PDOConfig {
 
 const DRIVER_MYSQL = 'mysql';
+const DRIVER_PGSQL = 'pgsql';
 protected $driver = 'mysql';
 protected $host = '127.0.0.1';
 protected $port = 3306;

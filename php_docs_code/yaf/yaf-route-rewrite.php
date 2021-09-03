@@ -7,6 +7,12 @@
  */
 final class Yaf_Route_Rewrite implements Yaf_Route_Interface {
 
+    protected $_route;
+    
+    protected $_default;
+    
+    protected $_verify;
+    
 
     /**
      * The __construct purpose
@@ -16,8 +22,6 @@ final class Yaf_Route_Rewrite implements Yaf_Route_Interface {
      * @param array $verify 
      */
     public function __construct($match, $route, $verify = null) {}
-    
-    public function match($uri) {}
     
     /**
      * The route purpose

@@ -11,7 +11,7 @@ protected $chan;
 protected $count = 0;
 protected $waiting = false;
 
-public function __construct($delta = null) {}
+public function __construct() {}
 public function add($delta = null) {}
 public function done() {}
 public function wait($timeout = null) {}

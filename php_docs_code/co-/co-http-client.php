@@ -39,8 +39,6 @@ public function setData($data) {}
 public function addFile($path, $name, $type = null, $filename = null, $offset = null, $length = null) {}
 public function addData($path, $name, $type = null, $filename = null) {}
 public function execute($path) {}
-public function getpeername() {}
-public function getsockname() {}
 public function get($path) {}
 public function post($path, $data) {}
 public function download($path, $file, $offset = null) {}
@@ -49,7 +47,6 @@ public function getHeaders() {}
 public function getCookies() {}
 public function getStatusCode() {}
 public function getHeaderOut() {}
-public function getPeerCert() {}
 public function upgrade($path) {}
 public function push($data, $opcode = null, $flags = null) {}
 public function recv($timeout = null) {}

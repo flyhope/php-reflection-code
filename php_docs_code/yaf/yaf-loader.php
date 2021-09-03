@@ -66,11 +66,23 @@
  */
 final class Yaf_Loader {
 
+    protected $_library;
+    
+    protected $_global_library;
+    
+    protected static $_instance;
+    
 
     /**
      * The __construct purpose
      */
     private function __construct() {}
+    
+    private function __clone() {}
+    
+    private function __sleep() {}
+    
+    private function __wakeup() {}
     
     /**
      * The autoload purpose
@@ -93,7 +105,7 @@ final class Yaf_Loader {
      *
      * @return void
      */
-    public function registerLocalNamespace($namespace, $path = null) {}
+    public function registerLocalNamespace($name_prefix) {}
     
     /**
      * The getLocalNamespace purpose
@@ -115,8 +127,6 @@ final class Yaf_Loader {
      * @return void
      */
     public function isLocalName($class_name) {}
-    
-    public function getNamespacePath($class_name) {}
     
     /**
      * The import purpose
@@ -143,9 +153,5 @@ final class Yaf_Loader {
      * @return Yaf_Loader
      */
     public function getLibraryPath($is_global = false) {}
-    
-    public function registerNamespace($namespace, $path = null) {}
-    
-    public function getNamespaces() {}
     
 }

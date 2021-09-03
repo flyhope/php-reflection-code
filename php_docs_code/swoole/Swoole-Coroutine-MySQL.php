@@ -31,6 +31,5 @@ public function recv() {}
 public function begin($timeout = null) {}
 public function commit($timeout = null) {}
 public function rollback($timeout = null) {}
-public function escape($string, $flags = null) {}
 public function close() {}
 }

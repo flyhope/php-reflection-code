@@ -14,11 +14,39 @@
  */
 final class Yaf_Dispatcher {
 
+    protected $_router;
+    
+    protected $_view;
+    
+    protected $_request;
+    
+    protected $_plugins;
+    
+    protected static $_instance;
+    
+    protected $_auto_render = true;
+    
+    protected $_return_response = false;
+    
+    protected $_instantly_flush = false;
+    
+    protected $_default_module;
+    
+    protected $_default_controller;
+    
+    protected $_default_action;
+    
 
     /**
      * Yaf_Dispatcher 构造函数
      */
     private function __construct() {}
+    
+    private function __clone() {}
+    
+    private function __sleep() {}
+    
+    private function __wakeup() {}
     
     /**
      * 开启自动渲染
@@ -62,8 +90,6 @@ final class Yaf_Dispatcher {
      */
     public function setRequest($request) {}
     
-    public function setResponse($response) {}
-    
     /**
      * 获取当前的Yaf_Application实例
      *
@@ -78,20 +104,12 @@ final class Yaf_Dispatcher {
      */
     public function getRouter() {}
     
-    public function getResponse() {}
-    
     /**
      * 获取当前的请求实例
      *
      * @return Yaf_Request_Abstract
      */
     public function getRequest() {}
-    
-    public function getDefaultModule() {}
-    
-    public function getDefaultController() {}
-    
-    public function getDefaultAction() {}
     
     /**
      * 设置错误处理函数
@@ -101,7 +119,7 @@ final class Yaf_Dispatcher {
      *
      * @return Yaf_Dispatcher
      */
-    public function setErrorHandler($callback, $error_types = null) {}
+    public function setErrorHandler($callback, $error_types) {}
     
     /**
      * 设置路由的默认模块
@@ -146,7 +164,7 @@ final class Yaf_Dispatcher {
      *
      * @return Yaf_Dispatcher
      */
-    public function autoRender($flag = null) {}
+    public function autoRender($flag) {}
     
     /**
      * 打开关闭自动响应
@@ -155,7 +173,7 @@ final class Yaf_Dispatcher {
      *
      * @return Yaf_Dispatcher
      */
-    public function flushInstantly($flag = null) {}
+    public function flushInstantly($flag) {}
     
     /**
      * 获取当前的Yaf_Dispatcher实例

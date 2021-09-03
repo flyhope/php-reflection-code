@@ -19,7 +19,7 @@ public function __construct($host, $port = null, $ssl = null, $reuse_port = null
 public function __destruct() {}
 public function set($settings) {}
 public function handle($pattern, $callback) {}
-private function onAccept() {}
+public function onAccept() {}
 public function start() {}
 public function shutdown() {}
 }

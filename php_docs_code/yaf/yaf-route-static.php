@@ -9,7 +9,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-final class Yaf_Route_Static implements Yaf_Route_Interface {
+class Yaf_Route_Static implements Yaf_Route_Interface {
 
 
     /**

@@ -7,11 +7,98 @@
  */
 class Yaf_Request_Http extends Yaf_Request_Abstract {
 
+    public $module;
+    
+    public $controller;
+    
+    public $action;
+    
+    public $method;
+    
+    protected $params;
+    
+    protected $language;
+    
+    protected $_exception;
+    
+    protected $_base_uri = '';
+    
+    protected $uri = '';
+    
+    protected $dispatched = false;
+    
+    protected $routed = false;
+    
 
+    /**
+     * fetch a query parameter
+     *
+     * @param string $name the variable name
+     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，提供的参数将被返回
+     *
+     * @return mixed
+     */
+    public function getQuery() {}
+    
+    /**
+     * The getRequest purpose
+     *
+     * @return void
+     */
+    public function getRequest() {}
+    
+    /**
+     * 返回POST变量
+     *
+     * @param string $name the variable name
+     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，提供的参数将被返回
+     *
+     * @return mixed
+     */
+    public function getPost() {}
+    
+    /**
+     * 返回Cookie变量
+     *
+     * @param string $name the cookie name
+     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，提供的参数将被返回
+     *
+     * @return mixed
+     */
+    public function getCookie() {}
+    
+    public function getRaw() {}
+    
+    /**
+     * The getFiles purpose
+     *
+     * @return void
+     */
+    public function getFiles() {}
+    
+    /**
+     * 从客户端返回变量
+     *
+     * @param string $name the variable name
+     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，它将被返回
+     *
+     * @return mixed
+     */
+    public function get() {}
+    
+    /**
+     * 是否为Ajax请求
+     *
+     * @return bool
+     */
+    public function isXmlHttpRequest() {}
+    
     /**
      * The __construct purpose
      */
-    public function __construct($request_uri = null, $base_uri = null) {}
+    public function __construct() {}
+    
+    private function __clone() {}
     
     public function isGet() {}
     
@@ -29,80 +116,15 @@ class Yaf_Request_Http extends Yaf_Request_Abstract {
     
     public function isCli() {}
     
-    /**
-     * 是否为Ajax请求
-     *
-     * @return bool
-     */
-    public function isXmlHttpRequest() {}
+    public function getServer($name, $default = null) {}
     
-    /**
-     * fetch a query parameter
-     *
-     * @param string $name the variable name
-     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，提供的参数将被返回
-     *
-     * @return mixed
-     */
-    public function getQuery($name = null, $default = null) {}
-    
-    /**
-     * The getRequest purpose
-     *
-     * @return void
-     */
-    public function getRequest($name = null, $default = null) {}
-    
-    /**
-     * 返回POST变量
-     *
-     * @param string $name the variable name
-     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，提供的参数将被返回
-     *
-     * @return mixed
-     */
-    public function getPost($name = null, $default = null) {}
-    
-    /**
-     * 返回Cookie变量
-     *
-     * @param string $name the cookie name
-     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，提供的参数将被返回
-     *
-     * @return mixed
-     */
-    public function getCookie($name = null, $default = null) {}
-    
-    public function getRaw() {}
-    
-    /**
-     * The getFiles purpose
-     *
-     * @return void
-     */
-    public function getFiles($name = null, $default = null) {}
-    
-    /**
-     * 从客户端返回变量
-     *
-     * @param string $name the variable name
-     * @param string $default 如果提供了此参数，当变量在未被找到的情况下，它将被返回
-     *
-     * @return mixed
-     */
-    public function get($name = null, $default = null) {}
-    
-    public function getServer($name = null, $default = null) {}
-    
-    public function getEnv($name = null, $default = null) {}
+    public function getEnv($name, $default = null) {}
     
     public function setParam($name, $value = null) {}
     
-    public function getParam($name = null, $default = null) {}
+    public function getParam($name, $default = null) {}
     
     public function getParams() {}
-    
-    public function clearParams() {}
     
     public function getException() {}
     
@@ -112,11 +134,11 @@ class Yaf_Request_Http extends Yaf_Request_Abstract {
     
     public function getActionName() {}
     
-    public function setModuleName($module, $format_name = null) {}
+    public function setModuleName($module) {}
     
-    public function setControllerName($controller, $format_name = null) {}
+    public function setControllerName($controller) {}
     
-    public function setActionName($action, $format_name = null) {}
+    public function setActionName($action) {}
     
     public function getMethod() {}
     

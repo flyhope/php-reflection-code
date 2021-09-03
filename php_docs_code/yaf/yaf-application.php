@@ -15,6 +15,40 @@
  */
 final class Yaf_Application {
 
+    /**
+     * Yaf_Application为应用提供了一个辅助设施。
+     * 它提供了可重用的资源，常见的和模块化的引导类，还有依赖的检查。
+     * Yaf_Application实现了单例模式。
+     * Yaf_Application不能够被序列化和反序列化，
+     * 因为当你尝试使用PHPUnit来为Yaf写一些测试用例的时候会造成一些不必要的麻烦。
+     * 你可以使用PHPUnit的@backupGlobals注释来控制全局变量的备份和恢复操作，
+     * 从而可以解决这个问题。
+     */
+    protected $config;
+    
+    /**
+     * Yaf_Application为应用提供了一个辅助设施。
+     * 它提供了可重用的资源，常见的和模块化的引导类，还有依赖的检查。
+     * Yaf_Application实现了单例模式。
+     * Yaf_Application不能够被序列化和反序列化，
+     * 因为当你尝试使用PHPUnit来为Yaf写一些测试用例的时候会造成一些不必要的麻烦。
+     * 你可以使用PHPUnit的@backupGlobals注释来控制全局变量的备份和恢复操作，
+     * 从而可以解决这个问题。
+     */
+    protected $dispatcher;
+    
+    protected static $_app;
+    
+    protected $_modules;
+    
+    protected $_running = false;
+    
+    protected $_environ = 'product';
+    
+    protected $_err_no = 0;
+    
+    protected $_err_msg = '';
+    
 
     /**
      * Yaf_Application的构造函数
@@ -122,6 +156,17 @@ final class Yaf_Application {
      */
     public function clearLastError() {}
     
-    public function getInstance() {}
+    /**
+     * 析构函数
+     *
+     * @return void
+     */
+    public function __destruct() {}
+    
+    private function __clone() {}
+    
+    private function __sleep() {}
+    
+    private function __wakeup() {}
     
 }

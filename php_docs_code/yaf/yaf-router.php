@@ -23,6 +23,10 @@
  */
 final class Yaf_Router {
 
+    protected $_routes;
+    
+    protected $_current;
+    
 
     /**
      * Yaf_Router constructor
@@ -37,7 +41,7 @@ final class Yaf_Router {
      *
      * @return Yaf_Router
      */
-    public function addRoute($name, $route) {}
+    public function addRoute() {}
     
     /**
      * 向Router中添加配置文件中定义的路由
@@ -46,7 +50,7 @@ final class Yaf_Router {
      *
      * @return void
      */
-    public function addConfig($config) {}
+    public function addConfig() {}
     
     /**
      * The route purpose
@@ -55,7 +59,7 @@ final class Yaf_Router {
      *
      * @return bool
      */
-    public function route($request) {}
+    public function route() {}
     
     /**
      * The getRoute purpose
@@ -64,7 +68,7 @@ final class Yaf_Router {
      *
      * @return void
      */
-    public function getRoute($name) {}
+    public function getRoute() {}
     
     /**
      * The getRoutes purpose

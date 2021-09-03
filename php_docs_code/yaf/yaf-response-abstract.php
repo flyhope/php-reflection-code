@@ -8,11 +8,26 @@
 abstract class Yaf_Response_Abstract {
 
     const DEFAULT_BODY = 'content';
+    protected $_header;
+    
+    protected $_body;
+    
+    protected $_sendheader = false;
+    
 
     /**
      * The __construct purpose
      */
     public function __construct() {}
+    
+    /**
+     * The __destruct purpose
+     *
+     * @return void
+     */
+    public function __destruct() {}
+    
+    private function __clone() {}
     
     /**
      * The __toString purpose

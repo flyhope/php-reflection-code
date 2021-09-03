@@ -5,7 +5,7 @@
  * @package Yar 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yar_Server_Protocol_Exception extends Yar_Server_Exception implements Throwable,Stringable {
+class Yar_Server_Protocol_Exception extends Yar_Server_Exception implements Throwable {
 
     protected $message = '';
     
@@ -17,6 +17,8 @@ class Yar_Server_Protocol_Exception extends Yar_Server_Exception implements Thro
     
 
     public function getType() {}
+    
+    private function __clone() {}
     
     public function __construct($message = null, $code = null, $previous = null) {}
     

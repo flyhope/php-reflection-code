@@ -5,7 +5,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaf_Exception_LoadFailed_View extends Yaf_Exception_LoadFailed implements Stringable,Throwable {
+class Yaf_Exception_LoadFailed_View extends Yaf_Exception_LoadFailed implements Throwable {
 
     protected $file;
     
@@ -18,6 +18,8 @@ class Yaf_Exception_LoadFailed_View extends Yaf_Exception_LoadFailed implements 
     protected $previous;
     
 
+    private function __clone() {}
+    
     public function __construct($message = null, $code = null, $previous = null) {}
     
     public function __wakeup() {}

@@ -10,29 +10,29 @@ class context extends \ArrayObject implements \Countable,\Serializable,\ArrayAcc
 const STD_PROP_LIST = 1;
 const ARRAY_AS_PROPS = 2;
 
-public function __construct($array = null, $flags = null, $iteratorClass = null) {}
-public function offsetExists($key) {}
-public function offsetGet($key) {}
-public function offsetSet($key, $value) {}
-public function offsetUnset($key) {}
+public function __construct($input = null, $flags = null, $iterator_class = null) {}
+public function offsetExists($index) {}
+public function offsetGet($index) {}
+public function offsetSet($index, $newval) {}
+public function offsetUnset($index) {}
 public function append($value) {}
 public function getArrayCopy() {}
 public function count() {}
 public function getFlags() {}
 public function setFlags($flags) {}
-public function asort($flags = null) {}
-public function ksort($flags = null) {}
-public function uasort($callback) {}
-public function uksort($callback) {}
+public function asort() {}
+public function ksort() {}
+public function uasort($cmp_function) {}
+public function uksort($cmp_function) {}
 public function natsort() {}
 public function natcasesort() {}
-public function unserialize($data) {}
+public function unserialize($serialized) {}
 public function serialize() {}
+public function __unserialize($serialized) {}
 public function __serialize() {}
-public function __unserialize($data) {}
+public function __debugInfo() {}
 public function getIterator() {}
-public function exchangeArray($array) {}
+public function exchangeArray($input) {}
 public function setIteratorClass($iteratorClass) {}
 public function getIteratorClass() {}
-public function __debugInfo() {}
 }

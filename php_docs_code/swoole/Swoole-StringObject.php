@@ -5,7 +5,7 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole;
-class StringObject implements \Stringable {
+class StringObject {
 
 protected $string;
 
@@ -20,16 +20,14 @@ public function ipos($needle) {}
 public function lower() {}
 public function upper() {}
 public function trim() {}
-public function ltrim() {}
+public function lrim() {}
 public function rtrim() {}
 public function substr($offset, $length = null) {}
 public function repeat($n) {}
-public function append($str) {}
 public function replace($search, $replace, & $count = null) {}
 public function startsWith($needle) {}
-public function endsWith($needle) {}
-public function equals($str, $strict = null) {}
 public function contains($subString) {}
+public function endsWith($needle) {}
 public function split($delimiter, $limit = null) {}
 public function char($index) {}
 public function chunkSplit($chunkLength = null, $chunkEnd = null) {}

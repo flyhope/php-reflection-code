@@ -5,8 +5,12 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-abstract class Yaf_Config_Abstract implements Iterator,Traversable,ArrayAccess,Countable {
+abstract class Yaf_Config_Abstract {
 
+    protected $_config;
+    
+    protected $_readonly = true;
+    
 
     /**
      * Getter
@@ -16,45 +20,14 @@ abstract class Yaf_Config_Abstract implements Iterator,Traversable,ArrayAccess,C
      *
      * @return mixed
      */
-    public function get($name = null) {}
-    
-    public function count() {}
-    
-    /**
-     * 转换为数组
-     *
-     * @return array
-     */
-    public function toArray() {}
-    
-    public function offsetUnset($name) {}
-    
-    public function rewind() {}
-    
-    public function current() {}
-    
-    public function key() {}
-    
-    public function next() {}
-    
-    public function valid() {}
-    
-    public function __isset($name) {}
-    
-    public function __get($name = null) {}
-    
-    public function offsetGet($name = null) {}
-    
-    public function offsetExists($name) {}
-    
-    abstract public function offsetSet($name, $value);
+    abstract public function get();
     
     /**
      * Setter
      *
      * @return Yaf_Config_Abstract
      */
-    abstract public function set($name, $value);
+    abstract public function set();
     
     /**
      * 寻找只读配置
@@ -62,5 +35,12 @@ abstract class Yaf_Config_Abstract implements Iterator,Traversable,ArrayAccess,C
      * @return bool
      */
     abstract public function readonly();
+    
+    /**
+     * 转换为数组
+     *
+     * @return array
+     */
+    abstract public function toArray();
     
 }

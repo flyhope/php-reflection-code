@@ -9,6 +9,28 @@ abstract class Yaf_Request_Abstract {
 
     const SCHEME_HTTP = 'http';
     const SCHEME_HTTPS = 'https';
+    public $module;
+    
+    public $controller;
+    
+    public $action;
+    
+    public $method;
+    
+    protected $params;
+    
+    protected $language;
+    
+    protected $_exception;
+    
+    protected $_base_uri = '';
+    
+    protected $uri = '';
+    
+    protected $dispatched = false;
+    
+    protected $routed = false;
+    
 
     /**
      * The isGet purpose
@@ -63,20 +85,6 @@ abstract class Yaf_Request_Abstract {
      */
     public function isXmlHttpRequest() {}
     
-    public function getQuery($name = null, $default = null) {}
-    
-    public function getRequest($name = null, $default = null) {}
-    
-    public function getPost($name = null, $default = null) {}
-    
-    public function getCookie($name = null, $default = null) {}
-    
-    public function getRaw() {}
-    
-    public function getFiles($name = null, $default = null) {}
-    
-    public function get($name = null, $default = null) {}
-    
     /**
      * 返回SERVER变量的值
      *
@@ -85,7 +93,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @return void
      */
-    public function getServer($name = null, $default = null) {}
+    public function getServer($name, $default = null) {}
     
     /**
      * 取得ENV变量的值
@@ -95,7 +103,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @return void
      */
-    public function getEnv($name = null, $default = null) {}
+    public function getEnv($name, $default = null) {}
     
     /**
      * The setParam purpose
@@ -115,7 +123,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @return void
      */
-    public function getParam($name = null, $default = null) {}
+    public function getParam($name, $default = null) {}
     
     /**
      * The getParams purpose
@@ -123,8 +131,6 @@ abstract class Yaf_Request_Abstract {
      * @return void
      */
     public function getParams() {}
-    
-    public function clearParams() {}
     
     /**
      * The getException purpose
@@ -161,7 +167,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @return void
      */
-    public function setModuleName($module, $format_name = null) {}
+    public function setModuleName($module) {}
     
     /**
      * The setControllerName purpose
@@ -170,7 +176,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @return void
      */
-    public function setControllerName($controller, $format_name = null) {}
+    public function setControllerName($controller) {}
     
     /**
      * The setActionName purpose
@@ -179,7 +185,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @return void
      */
-    public function setActionName($action, $format_name = null) {}
+    public function setActionName($action) {}
     
     /**
      * The getMethod purpose

@@ -5,13 +5,14 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole;
-class Error extends \Error implements \Stringable,\Throwable {
+class Error extends \Error implements \Throwable {
 
 protected $message = '';
 protected $code = 0;
 protected $file;
 protected $line;
 
+private function __clone() {}
 public function __construct($message = null, $code = null, $previous = null) {}
 public function __wakeup() {}
 public function getMessage() {}

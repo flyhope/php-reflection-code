@@ -5,13 +5,25 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-abstract final class Yaf_Session implements Iterator,Traversable,ArrayAccess,Countable {
+final class Yaf_Session implements Iterator,Traversable,ArrayAccess,Countable {
 
+    protected static $_instance;
+    
+    protected $_session;
+    
+    protected $_started = false;
+    
 
     /**
      * The __construct purpose
      */
     private function __construct() {}
+    
+    private function __clone() {}
+    
+    private function __sleep() {}
+    
+    private function __wakeup() {}
     
     /**
      * The getInstance purpose
@@ -55,6 +67,41 @@ abstract final class Yaf_Session implements Iterator,Traversable,ArrayAccess,Cou
      * @return void
      */
     public function count() {}
+    
+    /**
+     * The rewind purpose
+     *
+     * @return void
+     */
+    public function rewind() {}
+    
+    /**
+     * The next purpose
+     *
+     * @return void
+     */
+    public function next() {}
+    
+    /**
+     * The current purpose
+     *
+     * @return void
+     */
+    public function current() {}
+    
+    /**
+     * The key purpose
+     *
+     * @return void
+     */
+    public function key() {}
+    
+    /**
+     * The valid purpose
+     *
+     * @return void
+     */
+    public function valid() {}
     
     public function clear() {}
     
@@ -131,40 +178,5 @@ abstract final class Yaf_Session implements Iterator,Traversable,ArrayAccess,Cou
      * @return void
      */
     public function __unset($name) {}
-    
-    /**
-     * The current purpose
-     *
-     * @return void
-     */
-    abstract public function current();
-    
-    /**
-     * The next purpose
-     *
-     * @return void
-     */
-    abstract public function next();
-    
-    /**
-     * The key purpose
-     *
-     * @return void
-     */
-    abstract public function key();
-    
-    /**
-     * The valid purpose
-     *
-     * @return void
-     */
-    abstract public function valid();
-    
-    /**
-     * The rewind purpose
-     *
-     * @return void
-     */
-    abstract public function rewind();
     
 }

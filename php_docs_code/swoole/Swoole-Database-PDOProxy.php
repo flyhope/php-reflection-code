@@ -5,9 +5,8 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole\Database;
-class PDOProxy extends \Swoole\Database\ObjectProxy {
+class PDOProxy extends \Swoole\ObjectProxy {
 
-const IO_METHOD_REGEX = '/^query|prepare|exec|beginTransaction|commit|rollback$/i';
 const IO_ERRORS = array (
   0 => 2002,
   1 => 2006,
@@ -24,7 +23,6 @@ public function getRound() {}
 public function reconnect() {}
 public function setAttribute($attribute, $value) {}
 public function inTransaction() {}
-public function __clone() {}
 public function __getObject() {}
 public function __get($name) {}
 public function __set($name, $value) {}

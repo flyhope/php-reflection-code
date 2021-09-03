@@ -5,7 +5,7 @@
  * @package Yaf 
  * @author Leelmes <i@chengxuan.li>
  */
-class Yaf_Exception_RouterFailed extends Yaf_Exception implements Throwable,Stringable {
+class Yaf_Exception_RouterFailed extends Yaf_Exception implements Throwable {
 
     protected $file;
     
@@ -18,6 +18,8 @@ class Yaf_Exception_RouterFailed extends Yaf_Exception implements Throwable,Stri
     protected $previous;
     
 
+    private function __clone() {}
+    
     public function __construct($message = null, $code = null, $previous = null) {}
     
     public function __wakeup() {}

@@ -7,6 +7,8 @@
  */
 final class Yaf_Route_Supervar implements Yaf_Route_Interface {
 
+    protected $_var_name;
+    
 
     /**
      * The __construct purpose

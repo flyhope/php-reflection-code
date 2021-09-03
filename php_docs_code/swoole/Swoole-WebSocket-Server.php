@@ -19,7 +19,7 @@ public $manager_pid = 0;
 public $worker_id = -1;
 public $taskworker = false;
 public $worker_pid = 0;
-public $stats_timer;
+private $onHandshake;
 
 public function push($fd, $data, $opcode = null, $flags = null) {}
 public function disconnect($fd, $code = null, $reason = null) {}
@@ -57,11 +57,6 @@ public function getLastError() {}
 public function heartbeat($reactor_id) {}
 public function getClientInfo($fd, $reactor_id = null) {}
 public function getClientList($start_fd, $find_count = null) {}
-public function getWorkerId() {}
-public function getWorkerPid() {}
-public function getWorkerStatus($worker_id = null) {}
-public function getManagerPid() {}
-public function getMasterPid() {}
 public function connection_info($fd, $reactor_id = null) {}
 public function connection_list($start_fd, $find_count = null) {}
 public function sendMessage($message, $dst_worker_id) {}

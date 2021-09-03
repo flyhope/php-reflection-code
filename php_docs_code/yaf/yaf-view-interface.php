@@ -54,6 +54,6 @@ abstract class Yaf_View_Interface {
      *
      * @return void
      */
-    abstract public function getScriptPath($request = null);
+    abstract public function getScriptPath();
     
 }

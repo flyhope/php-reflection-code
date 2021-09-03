@@ -5,9 +5,8 @@
  * @author Leelmes <i@chengxuan.li>
  */
 namespace Swoole\Database;
-class MysqliStatementProxy extends \Swoole\Database\ObjectProxy {
+class MysqliStatementProxy extends \Swoole\ObjectProxy {
 
-const IO_METHOD_REGEX = '/^close|execute|fetch|prepare$/i';
 protected $__object;
 protected $queryString;
 protected $attrSetContext;
@@ -21,7 +20,6 @@ public function __call($name, $arguments) {}
 public function attr_set($attr, $mode) {}
 public function bind_param($types, & $arguments = null) {}
 public function bind_result(& $arguments = null) {}
-public function __clone() {}
 public function __getObject() {}
 public function __get($name) {}
 public function __set($name, $value) {}

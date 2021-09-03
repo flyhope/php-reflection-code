@@ -24,11 +24,13 @@ class Model_Manual {
         
         // SVN签出
         $cmd = "svn export 'http://svn.php.net/repository/phpdoc/zh/trunk/reference/{$ext_name}' {$docs_xml_dir} --force 2>&1";
+        echo $cmd . "\n";
 		exec($cmd, $output, $cmd_code);
-		
+
 		// 中文签出失败，尝试英文的
 		if ($cmd_code) {
 			$cmd = "svn export 'http://svn.php.net/repository/phpdoc/en/trunk/reference/{$ext_name}' {$docs_xml_dir} --force";
+            echo $cmd . "\n";
 			exec($cmd, $output, $cmd_code);
 		}
     
