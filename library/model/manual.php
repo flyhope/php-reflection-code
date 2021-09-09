@@ -37,7 +37,6 @@ class Model_Manual {
         $flag = FilesystemIterator::SKIP_DOTS | FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO;
         $dir = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($docs_xml_dir, $flag),RecursiveIteratorIterator::CHILD_FIRST);
         foreach($dir as $file) {
-            $pathname = $file->getPathname();
             $filename = $file->getFilename();
     
             //不处理.开头的任何东西 和 目录
